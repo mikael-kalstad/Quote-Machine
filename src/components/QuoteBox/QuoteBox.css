@@ -5,12 +5,13 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 #container {
+    align-self: center;
     font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
     padding: 30px;
     background-color: white;
     border-radius: 12px;    
-    margin: auto;
+    margin: 0 auto;
 
     display: grid;
     grid-template-rows: auto 50px 45px;

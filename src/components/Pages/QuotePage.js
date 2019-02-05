@@ -105,7 +105,14 @@ class QuotePage extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
+            <div
+                style={{
+                    height: "100vh",
+                    display: "grid",
+                    gridTemplateRows: "auto 60px 1fr",
+                    // alignItems: "center"
+                }}
+            >
                 <h1 className="title"
                     style={{textAlign: "center", color: "white", fontSize: "50px"}}
                 > {this.props.quoteCategory} Quotes</h1>
@@ -122,6 +129,7 @@ class QuotePage extends React.Component {
                     containerStyle={{width: "400px"}}
                     updateFilter={this.updateFilter}
                     resetFilter={this.resetFilter}
+                    placeHolder="James Bond..."
                 /> : null}
 
                 <QuoteBox 
@@ -132,7 +140,7 @@ class QuotePage extends React.Component {
                     onClick={this.handleClick}
                     isLoading={this.state.isLoading}
                 />
-            </React.Fragment>
+            </div>
         )
     }
 }

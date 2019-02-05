@@ -131,15 +131,21 @@ class SearchBar extends React.Component {
                             borderBottom: "1px solid #999" 
                         }}
                         value={this.state.inputValue}
-                        placeholder="Search for.. James Bond"
+                        placeholder={this.props.placeHolder}
                         onChange={this.onChange}
                         onKeyPress={this.inputSubmit}
                     />
 
                     {/* Button for searching or clearing input */}
                     {this.state.inputValue === "" ? 
-                    <button className="search-btn" style={{cursor: "default"}}><i className="fas fa-search"></i></button> :
-                    <button className="search-btn" ><i className="fas fa-times" onClick={this.clearInput}></i></button>}
+                        <button className="search-btn" style={{cursor: "default"}}>
+                            <i className="fas fa-search"></i>
+                        </button> 
+                        :
+                        <button className="search-btn" >
+                            <i className="fas fa-times" onClick={this.clearInput}></i>
+                        </button>
+                    }
                 </div>
 
                 {this.state.visibility ?
