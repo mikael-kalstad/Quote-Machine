@@ -1,0 +1,55 @@
+#wrapper {
+  height: 100vh;
+  width: 100vw;
+  transition: "all 1.0s ease-in";
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+/* .title {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+} */
+
+#info-button {
+  color: white;
+  float: right;
+  margin: 20px;
+  font-size: 40px;
+}
+
+#info-button :hover {
+  color: whitesmoke;
+}
+
+#info-button :active {
+  color: 'white';
+  filter: brightness(10px);
+}
+
+#goBack {
+  color: white;
+  position: absolute;
+  /* float: left; */
+  left: 15px;
+  top: 0;
+  margin: 20px;
+}
+
+#goBack :hover {
+  color: whitesmoke;
+}
+
+#goBack :active {
+  color: 'white';
+  filter: brightness(-10px);
+}
+
+.icon-goBack {
+  font-size: 40px;
+}
+
+.icon-goBack:visited {
+  color: white;
+}

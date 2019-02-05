@@ -1,0 +1,83 @@
+/* Icon library from font awsome */
+@import "https://use.fontawesome.com/releases/v5.6.3/css/all.css";
+
+/* Font */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+#container {
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;    
+    margin: auto;
+
+    display: grid;
+    grid-template-rows: auto 50px 45px;
+    grid-template-columns: 50px 50px auto;
+    grid-gap: 10px;
+    grid-template-areas: 
+    " quote quote quote"
+    " . . author "
+    " twitter tumblr newQuote ";
+}
+
+#quote {
+    grid-area: quote;
+    font-size: 28px;
+}
+
+@keyframes opacityInOut {
+    0% { opacity: 0.01; }
+    100% { opacity: 1.0; } 
+}
+
+#quote i {
+    padding-right: 10px;
+    font-size: 37px;
+}
+
+#author {
+    grid-area: author;
+    justify-self: end;
+    margin-right: 20px;
+}
+
+.icon {
+    /* Icons size inheret parents font size */
+    font-size: 25px;
+}
+
+.icon:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.icon:link {
+    color: inherit;
+    text-decoration: none;
+}
+
+#twitter {
+    grid-area: twitter;
+    text-align: center;
+}
+
+#tumblr {
+    grid-area: tumblr;
+    text-align: center;
+}
+
+#loading {
+    grid-area: quote;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+}
+
+Button {
+    grid-area: newQuote;
+    justify-self: end;
+    margin-right: 20px;
+    color: white;
+}

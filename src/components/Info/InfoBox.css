@@ -1,0 +1,26 @@
+/* Icon library from font awsome */
+@import "https://use.fontawesome.com/releases/v5.6.3/css/all.css";
+
+#infobox {
+    width: 630px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    margin: 0 auto;
+    line-height: 35px;
+
+    z-index: 999;
+}
+
+#exit {
+    float:right;
+}
+
+#infobox h2 {
+    text-align: center;
+}
+
+/* @keyframes openClose {
+   from {transform: rotate(0)}
+    to {transform: rotate(360);};
+} */
