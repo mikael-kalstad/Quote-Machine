@@ -1,5 +1,7 @@
-A quote is just a tattoo on the tongue
-    - Attributed to William F. DeVault
+> A quote is just a tattoo on the tongue
+
+-Attributed to William F. DeVault
+
 
 # What I have learned
 
@@ -14,6 +16,37 @@ A quote is just a tattoo on the tongue
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Components
+
+Some components that is used in this React-app and a desciption of them.
+
+#### Quotebox
+
+A box that will display the quote and author given. It also includes share button, specifically to twitter and tumblr. In addition it has a `New Quote` button which is also a component. 
+
+#### Searchbar 
+
+This component will display a search bar that can give suggestions based on data given. The suggestions in the search bar is also a component. 
+
+#### Icon
+
+Component that renders a clickable icon. Its primary use is for icons that will refer to a link or something similar with href. 
+
+#### Button
+
+Component that render a button with specific styling.
+
+#### StartMenu
+
+This component works as an index for the items that are displayed in the "start menu" of the application. On this page the category of quotes can be selected.
+
+#### QuotePage
+
+This page also work as an index, but for the items that are included in page that displays the quotebox and searchbar (for movie quotes only). 
+
+#### Info
+
+In development...
 
 ## Color
 
