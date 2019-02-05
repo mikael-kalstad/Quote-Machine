@@ -1,3 +1,6 @@
+A quote is just a tattoo on the tongue
+    - Attributed to William F. DeVault
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
