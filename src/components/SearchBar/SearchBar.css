@@ -2,15 +2,17 @@
     box-sizing: border-box;
 }
 
-#searchbar:hover {
-    animation: expandBar 1s ease forwards;
+#search-container {
+    width: 400px;
+    margin: 0 auto;
+}
+
+#searchbar {
+    position: relative;
 }
 
 #searchbar input {
-    /* position: static; */
-    display: block;
-    margin: 0 auto;
-    width: 400px;
+    width: 100%;
     padding: 15px;
     height: 50px;
     font-size: 17px;
@@ -22,9 +24,9 @@
 }
 
 #searchbar .search-btn {
-    /* position: relative; */
-    /* right: 40px; */
-    /* bottom: 36px; */
+    position: absolute;
+    right: 0px;
+    top: 12px;
     color: #555;
     border-style: none;
     outline: none;
@@ -33,12 +35,14 @@
     cursor: pointer;
 }
 
-#suggestions {
+#search-container Suggestion {
     position: absolute;
-    top: 80px;
+    width: 100%;
+}
+
+#suggestions {
     margin: 0;
     padding: 0;
-    width: 400px;
     list-style-type: none;
     color: #444;
     background: white;

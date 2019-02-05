@@ -119,7 +119,7 @@ class QuotePage extends React.Component {
 
                 {this.props.quoteCategory === "Movie"? 
                 <SearchBar 
-                    containerStyle={this.searchBarStyling}
+                    containerStyle={{width: "400px"}}
                     updateFilter={this.updateFilter}
                     resetFilter={this.resetFilter}
                 /> : null}

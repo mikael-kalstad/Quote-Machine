@@ -123,7 +123,7 @@ class SearchBar extends React.Component {
 
     render() {
         return ( 
-            <div id="container" style={this.props.containerStyle}>
+            <div id="search-container" style={this.props.containerStyle}>
                 <div id="searchbar">
                     <input 
                         style={{  

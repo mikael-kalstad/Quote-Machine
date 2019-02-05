@@ -1,6 +1,18 @@
 A quote is just a tattoo on the tongue
     - Attributed to William F. DeVault
 
+# What I have learned
+
+- React (JSX, state, components, props, child-parent relationship)
+- Node.js and NPM
+- Javascript ES6 syntax (class, arrow function, spread operator)
+- GIT (integration with VSC, GitHub)
+- API calls (using fetch in js)
+- JSON (access data with different formats)
+- Search Algorithm (with data from API)
+- The importance of writing reuseable and clean code and components (React)
+- *Seperating js files?*
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
