@@ -40,12 +40,8 @@ class QuotePage extends React.Component {
 
     updateFilter = (arr) => {
         if (arr[0] === undefined) return undefined;
-        else if (arr.length === 1) {
-            arr[0].toLowerCase().trim().split(' ').join('-');
-        } else if (arr.length === 2) {
-            arr[0] = arr[0].toLowerCase().trim();
-            arr[1] = arr[1].toLowerCase().trim().split(' ').join('-');
-        }
+
+        arr[2] = arr[2].toLowerCase().trim().split(' ').join('-');
     
         this.setState({ movieFilter: arr });
         this.handleClick();
@@ -87,14 +83,14 @@ class QuotePage extends React.Component {
         .then(data => this.updateMovieState(data))
     }
 
-    getSpecificMovieQuote = () => {     
+    getSpecificMovieQuote = () => {  
+        console.log("filter", this.state.movieFilter); 
+        
         let filterLink = 'http://movie-quotes-app.herokuapp.com/api/v1/quotes?';
         
-        if (this.state.movieFilter.length === 1) {
-            filterLink += "multiple=" + this.state.movieFilter[0];
-        } else if (this.state.movieFilter.length === 2) {
-            filterLink += this.state.movieFilter[0]+"="+this.state.movieFilter[1];
-        }
+        filterLink += this.state.movieFilter[0]+"="+this.state.movieFilter[2];
+        
+        console.log("link", filterLink);  
         fetch (filterLink, {
         headers: {
             "authorization": "Token token=1iVrE8HF2I6SHudxkWKJKQtt"

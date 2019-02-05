@@ -11,13 +11,50 @@ A quote is just a tattoo on the tongue
 - JSON (access data with different formats)
 - Search Algorithm (with data from API)
 - The importance of writing reuseable and clean code and components (React)
-- *Seperating js files?*
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+## Color
+
+The theme color of this site is changed each time a new quote is requested.  The excact value of the color is specified in HSL (hue, saturation, lightness). To ensure that the color has good contrast with the other elements, which are white, I have made a function that will randomly select an appropriate color.  By using these values for hue, saturation and lightness, the color has good contrast with white and is also "colorful".    
+
+- **Hue** 0 - 360 (all colors)
+- **Saturation** 30 - 100 (avoid low saturation to give more color to the site)
+- **Lightness** 70 - 80 (avoid too low lightness to give good contrast, and too high to avoid dark colors)
+- 
+
+## Search
+
+The movie quotes page has a search function. The searchbar and suggestion component is used on this page along with a search algorithm. The search algorithm will make an API call to the movie quote API and then base the suggestions on the data that it receives. The suggestions (and data) are divided into 6 different types:
+
+- Actor
+- Character
+- Content (Quote)
+- Category
+- Movie
+- Year (must be typed in full to give suggestion)
+
+If a suggestion is choosed it will act as a filter for every new quote that is requested. E.g if "James Bond (Character)" is choosed in the suggestions each time a `New Quote` is pressed, only quotes with "James Bond" as a character will be displayed. This filter can be reset by using the "exit "icon in the searchbar. Other inputs in the search bar that is searched with the `enter` key, will act as a more general filter without the type specified. 
+
+
+
+## Animation
+
+In development...
+
+
+
+## API's
+
+Documentation about the API's I used for the quotes can be found in these links.
+
+Programming Quotes: http://quotes.stormconsultancy.co.uk/api
+
+Movie Quotes: https://juanroldan.com.ar/movie-quotes-api/#introduction
+
+
+
 
 ### `npm start`
 
@@ -26,58 +63,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

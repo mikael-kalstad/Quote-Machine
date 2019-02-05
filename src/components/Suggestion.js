@@ -28,8 +28,8 @@ function Suggestion(props) {
                     style={buttonStyle} 
                     onClick={() => props.updateToSuggestion(props.results[i])}
                 >
-                    {props.results[i][1]}
-                    <p style={categoryStyle}>{props.results[i][0]}</p>
+                    {props.results[i][2]}
+                    <p style={categoryStyle}>{props.results[i][1]}</p>
                 </button>
             </li>
         )
