@@ -13,7 +13,18 @@ const checkForSuggestions = (data, input) => {
     if (data === undefined || !input || input === "") return undefined;
   
     let suggestions = {};
-    const addSuggestion = (...args) => suggestions[uniqueID(suggestions)] = [...args];
+
+    // Returns true if duplicate is found in suggestions
+    const checkForDuplicate = (...args) => {
+        for (let i in suggestions) {
+          if (suggestions[i].toString() === [...args].toString()) return true;
+        } return false;
+    }
+    
+    const addSuggestion = (...args) => {
+        if (checkForDuplicate(...args)) return false;
+        suggestions[uniqueID(suggestions)] = [...args];
+    }
 
     if (isYear(input)) addSuggestion("years", "Year", input);
 
@@ -27,7 +38,7 @@ const checkForSuggestions = (data, input) => {
              addSuggestion("categories", "Category", data[i]["categories"][randomNum]);
          }
          if (hasContent(input, data[i]["content"])) {
-            addSuggestion("content", "Quote", data[i]["content"]);
+            addSuggestion("content", "Quote", data[i]["content"], data[i]["actor"]["name"], data[i]["movie"]["title"]);
          }
          if (hasContent(input, data[i]["character"]["name"])) {
             addSuggestion("character", "Character", data[i]["character"]["name"]);

@@ -38,12 +38,14 @@ class QuotePage extends React.Component {
     // Method that child will call to update moviefilter
     updateFilter = (arr) => {
         if (arr === undefined) return undefined;
-        
-        // Always the last in the array that needs to be lowercase with - between words
-        arr[arr.length-1] = arr[arr.length-1].toLowerCase().trim().split(' ').join('-');
-    
-        this.setState({ movieFilter: arr });
-        this.handleClick(); // Update the quote with the moviefilter applied
+        if (arr[0] === "content") this.setState({ quote: arr[2], author: arr[3]+', '+arr[4] });
+        else {
+            // Always the last in the array that needs to be lowercase with - between words
+            arr[arr.length-1] = arr[arr.length-1].toLowerCase().trim().split(' ').join('-');
+            
+            this.setState({ movieFilter: arr });
+            this.handleClick(); // Update the quote with the moviefilter applied
+        }
     }
 
     resetFilter = () => this.setState({ movieFilter: [] })
@@ -52,7 +54,7 @@ class QuotePage extends React.Component {
     updateMovieState = (data) => {
         if (data === undefined || data.length === 0) return false;
         let num = data.length > 1 ? this.random(0, data.length-1) : 0;
-        
+        console.log("num",num)
         this.setState({
             quote: data[num]["content"],
             author: data[num]["actor"]["name"] + ", " + data[num]["movie"]["title"],
@@ -72,27 +74,26 @@ class QuotePage extends React.Component {
                 author: data.author,
                 isLoading: false
             })
-        });
+        })
+        .catch(err => console.log("error"))
     }
 
     // Will pick random quotes
     getMovieQuote = () => {
-        fetch('http://movie-quotes-app.herokuapp.com/api/v1/quotes?random=20', {
+        fetch('http://movie-quotes-app.herokuapp.com/api/v1/quotes?random=1', {
         headers: {
             "authorization": "Token token=1iVrE8HF2I6SHudxkWKJKQtt"
         }})
         .then(res => res.json())
-        .then(data => {
-            this.updateMovieState(data)
-            console.log(data);
-        })
+        .then(data => this.updateMovieState(data))
+        .catch(err => console.log("error"))
     }
 
     // Will get specific quotes based on moviefilter
     getSpecificMovieQuote = () => {  
         console.log("filter", this.state.movieFilter); 
         
-        let filterLink = 'http://movie-quotes-app.herokuapp.com/api/v1/quotes?';
+        let filterLink = "http://movie-quotes-app.herokuapp.com/api/v1/quotes?";
         this.state.movieFilter.length === 1 ? filterLink += "multiple="+this.state.movieFilter[0] :
         filterLink += this.state.movieFilter[0]+"="+this.state.movieFilter[2];
         
@@ -103,6 +104,7 @@ class QuotePage extends React.Component {
         }})
         .then(res => res.json())
         .then(data => this.updateMovieState(data))
+        .catch(err => console.log("error"))
     }
 
     render() {
@@ -111,8 +113,7 @@ class QuotePage extends React.Component {
                 style={{
                     height: "100vh",
                     display: "grid",
-                    gridTemplateRows: "auto 60px 1fr",
-                    // alignItems: "center"
+                    gridTemplateRows: this.props.quoteCategory === "Movie" ? "auto 60px 1fr" : "auto 1fr",
                 }}
             >
                 <h1 className="title"

@@ -1,5 +1,4 @@
 import React from 'react';
-import { calc } from 'popmotion';
 
 function Suggestion(props) {
     let categoryStyle = {
