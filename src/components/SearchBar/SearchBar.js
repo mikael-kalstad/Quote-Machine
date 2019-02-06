@@ -1,7 +1,11 @@
+// Search algorithm for suggestions is optional
+// - Takes a getSuggestion method as a prop
+// Minimum characters before update can also be assigned as a prop
+// - Prop name minCharactersBeforeUpdate
+
 import React from 'react';
 import './SearchBar.css';
 import Suggestion from '../Suggestion';
-import { getSuggestions } from './SearchAlg';
 
 class SearchBar extends React.Component {
    constructor(props) {
@@ -14,11 +18,14 @@ class SearchBar extends React.Component {
        }
    }
 
-   updateParent = (suggestionArr) => {
-        if (suggestionArr === [] || suggestionArr === undefined) return false;
-        this.setState({ inputValue: suggestionArr[2], visibility: false });
+   
+
+   updateParent = (arr) => {
+        if (arr === undefined || arr.length === 0) return false;
         this.clearSuggestions();
-        this.props.updateFilter(suggestionArr); // Parent function call
+
+        this.setState({ inputValue: arr[arr.length-1], visibility: false });
+        this.props.updateFilter(arr); // Parent function call
    }
 
     inputSubmit = (e) => {
@@ -29,11 +36,11 @@ class SearchBar extends React.Component {
        // Notice that suggestions are not updated before setState is finished updating the state
         this.setState({ inputValue: event.target.value, visibility: true },
             () => {
-                if (this.state.inputValue.length >= 2 && !this.state.timeout) {
+                // Will only start giving suggestions after two characters or more
+                if (this.state.inputValue.length >= this.props.minCharactersBeforeUpdate && !this.state.timeout) {
                     this.setState({ timeout: true })
-                    console.log("inputvalue", this.state.inputValue)
-                    let value = getSuggestions(this.state.inputValue)
-                    console.log("value", value)
+                    this.props.getSuggestions(this.state.inputValue)
+    
                     // Small delay to prevent too many API calls when typing
                     setTimeout(() => {this.setState({ timeout: false })}, 500);
                 }  
@@ -162,6 +169,11 @@ class SearchBar extends React.Component {
             </div>
         )
     }
+}
+
+// Default values for props
+SearchBar.defaultProps = {
+    minCharactersBeforeUpdate = 0;
 }
 
 export default SearchBar;

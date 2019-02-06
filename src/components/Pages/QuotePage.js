@@ -2,6 +2,7 @@ import React from 'react';
 import QuoteBox from '../QuoteBox/QuoteBox';
 import Icon from '../Icon';
 import SearchBar from '../SearchBar/SearchBar';
+import { getSuggestions } from '../SearchBar/SearchAlg';
 
 class QuotePage extends React.Component {
     constructor(props) {
@@ -12,9 +13,11 @@ class QuotePage extends React.Component {
             isLoading: false,
             movieFilter: []
         }
+        // Initializer, get quote
         this.handleClick();
     }
 
+    // Update method for button and search
     handleClick = ()  => {
         // Random delay to simulate differing API respond times    
         let delay = Math.random() * (600);
@@ -33,24 +36,22 @@ class QuotePage extends React.Component {
         }, delay);
       }
     
-    updateMovie = (arr) => {
-        this.updateFilter(arr);
-        this.handleClick();
-    }
-
+    // Method that child will call to update moviefilter
     updateFilter = (arr) => {
-        if (arr[0] === undefined) return undefined;
-
-        arr[2] = arr[2].toLowerCase().trim().split(' ').join('-');
+        if (arr === undefined) return undefined;
+        
+        // Always the last in the array that needs to be lowercase with - between words
+        arr[arr.length-1] = arr[arr.length-1].toLowerCase().trim().split(' ').join('-');
     
         this.setState({ movieFilter: arr });
-        this.handleClick();
+        this.handleClick(); // Update the quote with the moviefilter applied
     }
 
     resetFilter = () => this.setState({ movieFilter: [] })
 
+    // General method for updating movies state, used by several methods.
     updateMovieState = (data) => {
-        if (data.length === 0 || data === undefined) return false;
+        if (data === undefined || data.length === 0) return false;
         let num = data.length > 1 ? this.random(0, data.length-1) : 0;
         
         this.setState({
@@ -62,6 +63,7 @@ class QuotePage extends React.Component {
 
     random = (min, max) => Math.round(min + Math.random()*(max-min));
 
+    // Random programming quote
     getProgrammingQuote = () => {
         fetch('http://quotes.stormconsultancy.co.uk/random.json')
         .then(res => res.json())
@@ -74,6 +76,7 @@ class QuotePage extends React.Component {
         });
     }
 
+    // Will pick random quotes
     getMovieQuote = () => {
         fetch('http://movie-quotes-app.herokuapp.com/api/v1/quotes?random=1', {
         headers: {
@@ -83,6 +86,7 @@ class QuotePage extends React.Component {
         .then(data => this.updateMovieState(data))
     }
 
+    // Will get specific quotes based on moviefilter
     getSpecificMovieQuote = () => {  
         console.log("filter", this.state.movieFilter); 
         
@@ -126,6 +130,8 @@ class QuotePage extends React.Component {
                     updateFilter={this.updateFilter}
                     resetFilter={this.resetFilter}
                     placeHolder="James Bond..."
+                    minCharactersBeforeUpdate="2"
+                    getSuggestions={getSuggestions()}
                 /> : null}
 
                 <QuoteBox 
