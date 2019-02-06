@@ -51,8 +51,13 @@
     border-radius: 0 0 5px 5px;
 }
 
+#suggestion_li button {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 #suggestion_li:not(:last-of-type) {
-    width: 100%;
+    /* width: 100%; */
     border-bottom: 1px solid grey;
     font-size: 18px;
 }

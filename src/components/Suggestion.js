@@ -1,4 +1,5 @@
 import React from 'react';
+import { calc } from 'popmotion';
 
 function Suggestion(props) {
     let categoryStyle = {
@@ -7,9 +8,9 @@ function Suggestion(props) {
     }
 
     let buttonStyle = {
-        display: "block",
+        display: "inline-block",
         color: "#777",
-        width: "auto",
+        width: "100%",
         textAlign: "start",
         padding: 12,
         margin: 0, 
@@ -18,12 +19,16 @@ function Suggestion(props) {
         background: "none",
         fontSize: 20,
         cursor: "pointer",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        
     }
 
     let arr = [];
     for (let i in props.results) {
         arr.push(
-            <li key={props.results[i]} id={props.id_li}>
+            <li key={i} id={props.id_li}>
                 <button 
                     style={buttonStyle} 
                     onClick={() => props.updateToSuggestion(props.results[i])}

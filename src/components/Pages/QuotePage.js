@@ -2,7 +2,6 @@ import React from 'react';
 import QuoteBox from '../QuoteBox/QuoteBox';
 import Icon from '../Icon';
 import SearchBar from '../SearchBar/SearchBar';
-import { getSuggestions } from '../SearchBar/SearchAlg';
 
 class QuotePage extends React.Component {
     constructor(props) {
@@ -35,7 +34,7 @@ class QuotePage extends React.Component {
           }
         }, delay);
       }
-    
+
     // Method that child will call to update moviefilter
     updateFilter = (arr) => {
         if (arr === undefined) return undefined;
@@ -78,12 +77,15 @@ class QuotePage extends React.Component {
 
     // Will pick random quotes
     getMovieQuote = () => {
-        fetch('http://movie-quotes-app.herokuapp.com/api/v1/quotes?random=1', {
+        fetch('http://movie-quotes-app.herokuapp.com/api/v1/quotes?random=20', {
         headers: {
             "authorization": "Token token=1iVrE8HF2I6SHudxkWKJKQtt"
         }})
         .then(res => res.json())
-        .then(data => this.updateMovieState(data))
+        .then(data => {
+            this.updateMovieState(data)
+            console.log(data);
+        })
     }
 
     // Will get specific quotes based on moviefilter
@@ -91,7 +93,7 @@ class QuotePage extends React.Component {
         console.log("filter", this.state.movieFilter); 
         
         let filterLink = 'http://movie-quotes-app.herokuapp.com/api/v1/quotes?';
-        
+        this.state.movieFilter.length === 1 ? filterLink += "multiple="+this.state.movieFilter[0] :
         filterLink += this.state.movieFilter[0]+"="+this.state.movieFilter[2];
         
         console.log("link", filterLink);  
@@ -130,8 +132,8 @@ class QuotePage extends React.Component {
                     updateFilter={this.updateFilter}
                     resetFilter={this.resetFilter}
                     placeHolder="James Bond..."
-                    minCharactersBeforeUpdate="2"
-                    getSuggestions={getSuggestions()}
+                    // minCharactersBeforeUpdate="2"
+                    suggestionDelay="500"
                 /> : null}
 
                 <QuoteBox 
