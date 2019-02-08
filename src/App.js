@@ -14,7 +14,7 @@ class App extends Component {
     }
   }
 
-  setQuoteCategory= (category) => this.setState({ quoteCategory: category.target.id });
+  setQuoteCategory= (category) => this.setState({ quoteCategory: category });
 
   updateColor = () => this.setState({ color: this.randomHSL() });
 
@@ -42,7 +42,7 @@ class App extends Component {
       <div id="wrapper" style={wrapper_style}>
         {(this.state.quoteCategory === "") ? 
             <StartMenu 
-              items={["Programming", "Movie"]} 
+              color={this.state.color}
               onClick={this.setQuoteCategory}
             /> 
           :

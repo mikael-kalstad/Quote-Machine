@@ -5,11 +5,14 @@
   grid-template-rows: auto 1fr; */
 }
 
-/* .title {
-  text-align: center;
-  color: white;
-  font-size: 50px;
-} */
+@font-face {
+  font-family: 'journal';
+  src: url('./fonts/journal.ttf');
+}
+
+.title {
+  font-family: journal;
+}
 
 #info-button {
   color: white;

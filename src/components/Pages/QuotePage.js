@@ -2,6 +2,7 @@ import React from 'react';
 import QuoteBox from '../QuoteBox/QuoteBox';
 import Icon from '../Icon';
 import SearchBar from '../SearchBar/SearchBar';
+import Anime from 'react-anime';
 
 class QuotePage extends React.Component {
     constructor(props) {
@@ -136,15 +137,25 @@ class QuotePage extends React.Component {
                     // minCharactersBeforeUpdate="2"
                     suggestionDelay="500"
                 /> : null}
+                
 
-                <QuoteBox 
-                    width= "600px"
-                    color={this.props.color}     
-                    quote={this.state.quote}
-                    author={this.state.author}
-                    onClick={this.handleClick}
-                    isLoading={this.state.isLoading}
-                />
+                {/* <Anime
+                    easing='easeInOutElastic'
+                    delay={400}
+                    duration={1000}
+                    loop={true}
+                    translateX={100}
+                > */}
+                    <QuoteBox 
+                        width= "600px"
+                        color={this.props.color}     
+                        quote={this.state.quote}
+                        author={this.state.author}
+                        onClick={this.handleClick}
+                        isLoading={this.state.isLoading}
+                    />
+ 
+                {/* </Anime> */}
             </div>
         )
     }
