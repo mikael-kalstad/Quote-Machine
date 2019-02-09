@@ -11,7 +11,8 @@ function Button(props) {
         borderRadius: "4px",
         borderStyle: "none",
         backgroundColor: props.backgroundColor,
-        cursor: 'pointer'
+        color: props.textColor,
+        cursor: 'pointer',
     }
 
     return (
@@ -29,6 +30,7 @@ Button.defaultProps = {
     width: "110px",
     height: "40px",
     fontSize: "13px",
+    color: 'white',
 }
 
 export default Button;

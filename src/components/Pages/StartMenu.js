@@ -2,7 +2,7 @@ import React from 'react';
 import List from '../List';
 import Button from '../Button';
 import Anime from 'react-anime';
-
+import './StartMenu.css';
 
 function StartMenu(props) {
     const hslIncreaseLightness = (increase) => {;
@@ -16,16 +16,16 @@ function StartMenu(props) {
 
     let titleStyle = {
         fontSize: 110,
-        position: "absolute",
-        top: "20%",
-        left: "42%",
-        transform: "translate(-50%, -50%)"
+        position: 'absolute',
+        width: '100%',
+        textAlign: 'center',
+        top: '15%'
     }
 
     let titleDuration = 1500
 
     return (
-        <div id="menu-wrapper">
+        <>
             <Anime 
                 easing='easeInOutElastic'
                 delay={500}
@@ -38,27 +38,28 @@ function StartMenu(props) {
                 <h1 className="title" style={titleStyle}>Quotes</h1>
             </Anime>
 
+            <div id="menu-btns">
+                <Button 
+                    name="Movie"
+                    id="movie"
+                    onClick={() => props.onClick("Movie")}
+                    width='300px'
+                    height='70px'
+                    fontSize='30px'
+                    backgroundColor='black'
+                />
 
-            <Button 
-                name="Movie"
-                id="movie"
-                onClick={() => props.onClick("Movie")}
-                width='50vw'
-                height='100vh'
-                fontSize='40px'
-                backgroundColor='#71bed6'
-            />
-
-            <Button 
-                name="Programming"
-                id="programming"
-                onClick={() => props.onClick("Programming")}
-                width= '50vw'
-                height= '100vh'
-                fontSize='40px'
-                backgroundColor='#ef5858'
-            />
-        </div>
+                <Button 
+                    name="Programming"
+                    id="programming"
+                    onClick={() => props.onClick("Programming")}
+                    width='300px'
+                    height='70px'
+                    fontSize='30px'
+                    backgroundColor='black'
+                />
+            </div>
+        </>
     )
 }
 
