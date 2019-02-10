@@ -1,4 +1,5 @@
 import React  from 'react';
+import Anime from 'react-anime';
 
 function Button(props) {
     let style = {
@@ -15,22 +16,31 @@ function Button(props) {
         cursor: 'pointer',
     }
 
-    return (
+    let button = (
         <button 
             style={style} 
             id={props.id}
+            className={props.class}
             onClick={props.onClick}
         >
             {props.name}
         </button>
     )
+
+    // If animation is defined
+    if (typeof props.animeProps !== 'undefined') {
+        return (
+            <Anime {...props.animeProps}>
+                {button}
+            </Anime>
+        )
+    }
+  
+    // Return button without animation
+    return (
+        button
+    )
 }
 
-Button.defaultProps = {
-    width: "110px",
-    height: "40px",
-    fontSize: "13px",
-    color: 'white',
-}
 
 export default Button;

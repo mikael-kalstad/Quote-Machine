@@ -1,8 +1,8 @@
 import React  from 'react';
 import Button from '../Button';
 import Icon from '../Icon';
-import './QuoteBox.css';
 import Loading from '../Loading';
+import './QuoteBox.css';
 
 function QuoteBox(props) {
     let opacity = props.isLoading ? 0 : 1;
@@ -48,9 +48,10 @@ function QuoteBox(props) {
                 />
 
                 <Button
-                    backgroundColor= {props.color}
                     name="New Quote" 
+                    id="new-quote"
                     onClick={props.onClick}
+                    backgroundColor= {props.color}
                 />
         </div>
     )

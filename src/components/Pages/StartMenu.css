@@ -35,3 +35,15 @@
         justify-self: center;
     }
 }
+
+.btns {
+    width: 300px;
+    height: 70px;
+    font-size: 30px;
+    color: white;
+}
+
+.btns:hover {
+    background: white;
+    color: #999;
+}

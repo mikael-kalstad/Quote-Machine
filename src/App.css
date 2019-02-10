@@ -1,8 +1,6 @@
 #wrapper {
   height: 100vh;
   transition: "all 1.0s ease-in";
-  /* display: grid;
-  grid-template-rows: auto 1fr; */
 }
 
 @font-face {

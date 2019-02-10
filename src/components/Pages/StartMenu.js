@@ -1,5 +1,4 @@
 import React from 'react';
-import List from '../List';
 import Button from '../Button';
 import Anime from 'react-anime';
 import './StartMenu.css';
@@ -23,41 +22,58 @@ function StartMenu(props) {
     }
 
     let titleDuration = 1500
+    
+    let buttons = {
+        backgroundColor: 'black',
+        class: 'btns',
+        names: ["Movie", "Programming"],
+        ids: ["movie", "programming"]
+    }
+
+    let buttonsArr = [];
+
+    let titleAnimation = anime.timeline({
+        easing: 'easeOutExpo',
+        duration: 750
+    })
+
+    buttons.names.forEach(name => {
+        buttonsArr.push (
+            <Button 
+                key={name}
+                name={name}
+                id={name.toLowerCase()}
+                class={buttons.class}
+                onClick={() => props.onClick(name)}
+                backgroundColor={buttons.backgroundColor}
+                
+                // Animation
+                animeProps = {{
+                    delay: titleDuration+200,
+                    duration: 1900,
+                    opacity: [0, 1],
+                    borderRadius: [0, 10],
+                    translateX: 100
+                }}
+            />
+        )
+    })
 
     return (
         <>
-            <Anime 
+            <Anime
                 easing='easeInOutElastic'
                 delay={500}
                 duration={titleDuration}
-                // loop={true}
-                translateY='100px'
-                opacity={[0.01, 1]}
-                
+                opacity= {[0, 1]}
+                translateY= {[150, 0]}
+                scale={[2, 1]}
             > 
                 <h1 className="title" style={titleStyle}>Quotes</h1>
             </Anime>
 
             <div id="menu-btns">
-                <Button 
-                    name="Movie"
-                    id="movie"
-                    onClick={() => props.onClick("Movie")}
-                    width='300px'
-                    height='70px'
-                    fontSize='30px'
-                    backgroundColor='black'
-                />
-
-                <Button 
-                    name="Programming"
-                    id="programming"
-                    onClick={() => props.onClick("Programming")}
-                    width='300px'
-                    height='70px'
-                    fontSize='30px'
-                    backgroundColor='black'
-                />
+                {buttonsArr}
             </div>
         </>
     )
