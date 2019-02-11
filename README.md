@@ -1,6 +1,6 @@
-> A quote is just a tattoo on the tongue
-
--Attributed to William F. DeVault
+> ## Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
+>
+> -John F. Woods, 1991
 
 
 # What I have learned
@@ -14,40 +14,6 @@
 - Search Algorithm (with data from API)
 - The importance of writing reuseable and clean code and components (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Components
-
-Some components that is used in this React-app and a desciption of them.
-
-#### Quotebox
-
-A box that will display the quote and author given. It also includes share button, specifically to twitter and tumblr. In addition it has a `New Quote` button which is also a component. 
-
-#### Searchbar 
-
-This component will display a search bar that can give suggestions based on data given. The suggestions in the search bar is also a component. 
-
-#### Icon
-
-Component that renders a clickable icon. Its primary use is for icons that will refer to a link or something similar with href. 
-
-#### Button
-
-Component that render a button with specific styling.
-
-#### StartMenu
-
-This component works as an index for the items that are displayed in the "start menu" of the application. On this page the category of quotes can be selected.
-
-#### QuotePage
-
-This page also work as an index, but for the items that are included in page that displays the quotebox and searchbar (for movie quotes only). 
-
-#### Info
-
-In development...
-
 ## Color
 
 The theme color of this site is changed each time a new quote is requested.  The excact value of the color is specified in HSL (hue, saturation, lightness). To ensure that the color has good contrast with the other elements, which are white, I have made a function that will randomly select an appropriate color.  By using these values for hue, saturation and lightness, the color has good contrast with white and is also "colorful".    
@@ -59,7 +25,7 @@ The theme color of this site is changed each time a new quote is requested.  The
 
 ## Search
 
-The movie quotes page has a search function. The searchbar and suggestion component is used on this page along with a search algorithm. The search algorithm will make an API call to the movie quote API and then base the suggestions on the data that it receives. The suggestions (and data) are divided into 6 different types:
+The movie quotes page has a search function. A searchbar and suggestion component is used on this page along with a search algorithm. The search algorithm will make an API call to the movie quote API and then base the suggestions on the data that it receives. The suggestions (and data) are divided into 6 different types:
 
 - Actor
 - Character
@@ -82,17 +48,6 @@ In development...
 
 Documentation about the API's I used for the quotes can be found in these links.
 
-Programming Quotes: http://quotes.stormconsultancy.co.uk/api
+**Programming Quotes**: http://quotes.stormconsultancy.co.uk/api
 
-Movie Quotes: https://juanroldan.com.ar/movie-quotes-api/#introduction
-
-
-
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+**Movie Quotes**: https://juanroldan.com.ar/movie-quotes-api/#introduction

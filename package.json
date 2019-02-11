@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animejs": "^3.0.1",
     "react": "^16.8.1",
     "react-addons-transition-group": "^15.6.2",
     "react-anime": "^2.2.0",

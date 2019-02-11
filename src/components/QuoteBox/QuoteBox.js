@@ -2,6 +2,7 @@ import React  from 'react';
 import Button from '../Button';
 import Icon from '../Icon';
 import Loading from '../Loading';
+import Anime from 'react-anime';
 import './QuoteBox.css';
 
 function QuoteBox(props) {
@@ -15,45 +16,56 @@ function QuoteBox(props) {
     let twitterLink="https://www.twitter.com/intent/tweet?text=Check out this quote: \"" + props.quote + "\"";
 
     return (
-        <div id="container" 
-            style = {{color: props.color, width: props.width} }
-        >
-                <p id="quote" style={contentStyle}>
-                    <i className="fas fa-quote-left"></i>
-                    {props.quote}
-                </p>
+        <>
+            {/* <Anime
+                 easing='easeInOutElastic'
+                 delay={500}
+                 duration={1200}
+                 opacity= {[0, 1]}
+                 translateY= {[150, 0]}
+                 scale={[2, 1]}
+            > */}
+                <div id="container" 
+                    style = {{color: props.color, width: props.width} }
+                >
+                        <p id="quote" style={contentStyle}>
+                            <i className="fas fa-quote-left"></i>
+                            {props.quote}
+                        </p>
 
-                <p id="author" style={contentStyle}>- {props.author}</p>
+                        <p id="author" style={contentStyle}>- {props.author}</p>
 
-                <Icon 
-                    id="twitter"
-                    link={twitterLink}
-                    classNameI="fab fa-twitter"
-                    classNameA="icon"
-                    target="_blank"
-                />
+                        <Icon 
+                            id="twitter"
+                            link={twitterLink}
+                            classNameI="fab fa-twitter"
+                            classNameA="icon"
+                            target="_blank"
+                        />
 
-                <Icon 
-                    id="tumblr"
-                    link="https://www.tumblr.com"
-                    classNameI="fab fa-tumblr"
-                    classNameA="icon"
-                    target="_blank"
-                />
-                
-                <Loading 
-                    id="loading"
-                    isLoading={props.isLoading}
-                    delay={500}
-                />
+                        <Icon 
+                            id="tumblr"
+                            link="https://www.tumblr.com"
+                            classNameI="fab fa-tumblr"
+                            classNameA="icon"
+                            target="_blank"
+                        />
+                        
+                        <Loading 
+                            id="loading"
+                            isLoading={props.isLoading}
+                            delay={500}
+                        />
 
-                <Button
-                    name="New Quote" 
-                    id="new-quote"
-                    onClick={props.onClick}
-                    backgroundColor= {props.color}
-                />
-        </div>
+                        <Button
+                            name="New Quote" 
+                            id="new-quote"
+                            onClick={props.onClick}
+                            backgroundColor= {props.color}
+                        />
+                </div>
+            {/* </Anime> */}
+        </>
     )
 }
 

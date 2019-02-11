@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import QuoteBox from '../QuoteBox/QuoteBox';
 import Icon from '../Icon';
 import SearchBar from '../SearchBar/SearchBar';
 import Anime from 'react-anime';
 
-class QuotePage extends React.Component {
+class QuotePage extends Component {
     constructor(props) {
         super(props);
         this.state = {

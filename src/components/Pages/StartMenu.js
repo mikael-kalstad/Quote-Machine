@@ -32,11 +32,6 @@ function StartMenu(props) {
 
     let buttonsArr = [];
 
-    let titleAnimation = anime.timeline({
-        easing: 'easeOutExpo',
-        duration: 750
-    })
-
     buttons.names.forEach(name => {
         buttonsArr.push (
             <Button 
@@ -47,17 +42,17 @@ function StartMenu(props) {
                 onClick={() => props.onClick(name)}
                 backgroundColor={buttons.backgroundColor}
                 
-                // Animation
+                Animation
                 animeProps = {{
                     delay: titleDuration+200,
                     duration: 1900,
                     opacity: [0, 1],
                     borderRadius: [0, 10],
-                    translateX: 100
+                    translateX: [-100, 0]
                 }}
             />
         )
-    })
+    });
 
     return (
         <>
@@ -69,7 +64,7 @@ function StartMenu(props) {
                 translateY= {[150, 0]}
                 scale={[2, 1]}
             > 
-                <h1 className="title" style={titleStyle}>Quotes</h1>
+                <h1 className="title" style={titleStyle} ref="myTitle">Quotes</h1>
             </Anime>
 
             <div id="menu-btns">
