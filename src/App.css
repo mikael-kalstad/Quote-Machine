@@ -1,15 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+
+.title {
+  font-family: Abril Fatface, sans-serif;
+}
+
 #wrapper {
   height: 100vh;
   transition: "all 1.0s ease-in";
-}
-
-@font-face {
-  font-family: 'journal';
-  src: url('./fonts/journal.ttf');
-}
-
-.title {
-  font-family: journal;
 }
 
 #info-button {

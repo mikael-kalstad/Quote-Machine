@@ -18,7 +18,8 @@ function StartMenu(props) {
         position: 'absolute',
         width: '100%',
         textAlign: 'center',
-        top: '15%'
+        top: '15%',
+        color: "white"
     }
 
     let titleDuration = 1500
@@ -31,7 +32,7 @@ function StartMenu(props) {
     }
 
     let buttonsArr = [];
-
+    
     buttons.names.forEach(name => {
         buttonsArr.push (
             <Button 
@@ -40,15 +41,15 @@ function StartMenu(props) {
                 id={name.toLowerCase()}
                 class={buttons.class}
                 onClick={() => props.onClick(name)}
-                backgroundColor={buttons.backgroundColor}
+                textColor={props.color}
                 
-                Animation
+                //Animation
                 animeProps = {{
-                    delay: titleDuration+200,
-                    duration: 1900,
+                    delay: 1000,
+                    duration: 1000,
                     opacity: [0, 1],
                     borderRadius: [0, 10],
-                    translateX: [-100, 0]
+                    translateY: [0, -100]
                 }}
             />
         )
@@ -58,13 +59,13 @@ function StartMenu(props) {
         <>
             <Anime
                 easing='easeInOutElastic'
-                delay={500}
+                delay={300}
                 duration={titleDuration}
                 opacity= {[0, 1]}
-                translateY= {[150, 0]}
-                scale={[2, 1]}
+                translateY= {[100, 0]}
+                // scale={[1.2, 1]}
             > 
-                <h1 className="title" style={titleStyle} ref="myTitle">Quotes</h1>
+                <h1 className="title" style={titleStyle}>Quotes</h1>
             </Anime>
 
             <div id="menu-btns">

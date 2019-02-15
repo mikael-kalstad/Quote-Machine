@@ -117,7 +117,7 @@ class QuotePage extends Component {
                     gridTemplateRows: this.props.quoteCategory === "Movie" ? "auto 60px 1fr" : "auto 1fr",
                 }}
             >
-                <h1 className="title"
+                <h1 
                     style={{textAlign: "center", color: "white", fontSize: "50px"}}
                 > {this.props.quoteCategory} Quotes</h1>
                 
@@ -138,24 +138,14 @@ class QuotePage extends Component {
                     suggestionDelay="500"
                 /> : null}
                 
-
-                {/* <Anime
-                    easing='easeInOutElastic'
-                    delay={400}
-                    duration={1000}
-                    loop={true}
-                    translateX={100}
-                > */}
-                    <QuoteBox 
-                        width= "600px"
-                        color={this.props.color}     
-                        quote={this.state.quote}
-                        author={this.state.author}
-                        onClick={this.handleClick}
-                        isLoading={this.state.isLoading}
-                    />
- 
-                {/* </Anime> */}
+                <QuoteBox 
+                    width= "600px"
+                    color={this.props.color}     
+                    quote={this.state.quote}
+                    author={this.state.author}
+                    onClick={this.handleClick}
+                    isLoading={this.state.isLoading}
+                />
             </div>
         )
     }
