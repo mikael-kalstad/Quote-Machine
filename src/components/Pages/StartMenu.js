@@ -1,77 +1,131 @@
 import React from 'react';
-import Button from '../Button';
+import CategoriesSlider from '../CategoriesSlider';
+import CategoryBox from '../CategoryBox';
+import quoteIcon from '../../img/quotes.png';
+
 import Anime from 'react-anime';
+import styled from 'styled-components';
 import './StartMenu.css';
 
+const Wrapper = styled.div`
+    background-color: #03998D;
+    height: 100vh;
+    padding: 40px 0 40px 40px;
+    display: grid;
+    grid-template-rows: auto 40% 10% auto ;
+    align-items: end;
+
+    @media screen and (max-width: 850px) {
+        padding: 0;
+    }
+`;
+
+const Title = styled.h1`
+    color: #EEDF08;
+    padding-left: 55px;
+    margin: 0;
+    font-family: 'Abril Fatface';
+    font-size: 130px;
+   
+    @media screen and (max-width: 1100px) {
+        font-size: 100px;
+    }
+
+    @media screen and (max-width: 850px) {
+        text-align: center;
+        padding-left: 0;
+    }
+`;
+
+const QuoteText = styled.p`
+    color: whitesmoke;
+    padding-left: 55px;
+    font-family: Helvetica;
+    font-size: 55px;
+    align-self: center;
+    
+    @media screen and (max-width: 1100px) {
+        font-size: 40px;
+    }
+
+    @media screen and (max-width: 850px) {
+        padding: 0 40px 0 0;
+        text-align: center;
+        margin: auto;
+    }
+`;
+
+const CategoryText = styled.p`
+    color: whitesmoke;
+    padding-left: 55px;
+    padding-bottom: 20px;
+    margin: 0;
+    font-family: Helvetica;
+    font-size: 60px;
+    font-weight: 100;
+
+    @media screen and (max-width: 1100px) {
+        font-size: 50px;
+        /* padding-left: 0; */
+    }
+`;
+
+const Image = styled.img`
+    width: 80px;
+    padding-right: 20px;
+`;
+
 function StartMenu(props) {
-    const hslIncreaseLightness = (increase) => {;
-        // Find the lightness in the hsl color
-        let light = props.color.match(/\d{2}/g)[2];
-        // Add increase to it
-        let newLight = (Number.parseInt(light)+increase).toString();
-        return props.color.replace(light, newLight) // New color
-    }
 
-
-    let titleStyle = {
-        fontSize: 110,
-        position: 'absolute',
-        width: '100%',
-        textAlign: 'center',
-        top: '15%',
-        color: "white"
-    }
 
     let titleDuration = 1500
-    
-    let buttons = {
-        backgroundColor: 'black',
-        class: 'btns',
-        names: ["Movie", "Programming"],
-        ids: ["movie", "programming"]
+    let Aprops = {
+        easing: "easeInOutElastic",
+        delay: titleDuration-500,
+        duration: 800,
+        opacity: [0, 1],
+        translateY: [100, 0],
     }
 
-    let buttonsArr = [];
-    
-    buttons.names.forEach(name => {
-        buttonsArr.push (
-            <Button 
-                key={name}
-                name={name}
-                id={name.toLowerCase()}
-                class={buttons.class}
-                onClick={() => props.onClick(name)}
-                textColor={props.color}
-                
-                //Animation
-                animeProps = {{
-                    delay: 1000,
-                    duration: 1000,
-                    opacity: [0, 1],
-                    borderRadius: [0, 10],
-                    translateY: [0, -100]
-                }}
-            />
-        )
-    });
-
     return (
-        <>
+        <Wrapper>
             <Anime
                 easing='easeInOutElastic'
                 delay={300}
                 duration={titleDuration}
                 opacity= {[0, 1]}
                 translateY= {[100, 0]}
-                // scale={[1.2, 1]}
             > 
-                <h1 className="title" style={titleStyle}>Quotes</h1>
+                <Title>Quotes.</Title>
             </Anime>
 
-            <div id="menu-btns">
-                {buttonsArr}
-            </div>
-        </>
+            <Anime
+                easing='easeInOutElastic'
+                delay={titleDuration-500}
+                duration={800}
+                opacity= {[0, 1]}
+                translateY= {[100, 0]}
+            > 
+                <QuoteText><Image src={quoteIcon}></Image>A quote is just a tattoo on the tongue</QuoteText>
+            </Anime>
+
+            <CategoryText>Categories</CategoryText>
+            
+            <CategoriesSlider
+                categoryNames={props.categoryNames}
+                categoryLogos={props.categoryLogos}
+                onClick={props.onClick}
+                
+                // animeProps = {{
+                //     easing: "easeInOutElastic",
+                //     delay: titleDuration-500,
+                //     duration: 800,
+                //     opacity: [0, 1],
+                //     translateY: [100, 0]
+                // }}
+            >   
+            </CategoriesSlider>
+        </Wrapper>
     )
 }
 
