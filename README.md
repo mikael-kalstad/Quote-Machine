@@ -6,12 +6,13 @@
 # What I have learned
 
 - React (JSX, state, components, props, child-parent relationship)
-- NPM
+- NPM pacakages and dependencies
 - Javascript ES6 syntax (class, arrow function, spread operator)
-- GIT (integration with VSC, GitHub)
+- More GIT (integration with VSC, GitHub)
 - API calls (using fetch in js)
-- JSON (access data with different formats)
-- Search Algorithm (with data from API)
+- Handling JSON (access data with different formats)
+- Simple search Algorithm (with data from API)
+<!-- - Sketching UI (Used Lunacy) before coding the front end. I learned this the hard way; I did a total redesign of the project mid-way through. -->
 
 ## Color
 
