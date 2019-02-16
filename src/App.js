@@ -14,6 +14,9 @@ class App extends Component {
     }
   }
 
+  // HELLO 
+  num = 2;
+
   setQuoteCategory= (category) => this.setState({ quoteCategory: category });
 
   updateColor = () => this.setState({ color: this.randomHSL() });
