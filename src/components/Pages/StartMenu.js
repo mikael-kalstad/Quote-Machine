@@ -9,10 +9,11 @@ import './StartMenu.css';
 
 const Wrapper = styled.div`
     background-color: #03998D;
+    width: 100%;
     height: 100vh;
     padding: 40px 0 40px 40px;
-    display: grid;
-    grid-template-rows: auto 40% 10% auto ;
+    /* display: grid; */
+    /* grid-template-rows: 20% 40% 10% 30% ; */
     align-items: end;
 
     @media screen and (max-width: 850px) {
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
     color: #EEDF08;
-    padding-left: 55px;
+    padding-left: 45px;
     margin: 0;
     font-family: 'Abril Fatface';
     font-size: 130px;
@@ -39,13 +40,13 @@ const Title = styled.h1`
 
 const QuoteText = styled.p`
     color: whitesmoke;
-    padding-left: 55px;
+    padding: 40px;
     font-family: Helvetica;
-    font-size: 55px;
+    font-size: 40px;
     align-self: center;
     
     @media screen and (max-width: 1100px) {
-        font-size: 40px;
+        font-size: 35px;
     }
 
     @media screen and (max-width: 850px) {

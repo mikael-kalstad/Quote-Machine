@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 function CategoryBox(props) {
     const Box = styled.div`
-        width: ${width => props.width ? props.width : "350px"};
-        height: ${height => props.height ? props.height : "250px"};
+        width: ${width => props.width ? props.width : "300px"};
+        height: ${height => props.height ? props.height : "200px"};
         background-color: ${backgroundColor => props.backgroundColor ? props.backgroundColor : "#03897E"};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         cursor: pointer;
@@ -20,13 +20,13 @@ function CategoryBox(props) {
         }
 
         @media screen and (max-width: 1100px) {
-            width: 300px;
-            height: 200px;
+            width: 250px;
+            height: 150px;
         }
     `;
     
     const Image = styled.img`
-        width: 80%;
+        max-width: 100%;
         max-height: 100%;
         object-fit: cover;
     `;
