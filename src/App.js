@@ -19,14 +19,14 @@ class App extends Component {
     super();
     this.state = {
       quoteCategory: "",
-      color: "black",
+      color: this.randomHSL(),
     }
   }
 
-  setQuoteCategory= (category) => this.setState({ quoteCategory: category });
+  setQuoteCategory = (category) => this.setState({ quoteCategory: category });
 
   // Will find appropriate HSL color and return it
-  randomHSL= () => {
+  randomHSL = () => {
     let random = (min, max) => Math.round(min + Math.random()*(max-min));
 
     // Only pick color that have good contrast with white
@@ -43,7 +43,6 @@ class App extends Component {
 
   categoryNames = ["Movie", "Programming", "Movie", "Programming"];
   categoryLogos = [movieLogo, terminal, movieLogo, terminal, movieLogo, terminal];
-
 
   render() {    
     return (

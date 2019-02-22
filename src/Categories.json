@@ -1,10 +1,13 @@
 [
     {
         "name": "Movie",
-        "logo": "./img/movie.png"
+        "logo": "./img/movie.png",
+        "api_call_function": "./API/Movie_API",
+        "search_algorithm": "./Search Algorithm/Movie_searchAlg"
     },
     {
-        "name": "Programming",
-        "logo": "./img/movie.png"
+        "name": "Code",
+        "logo": "./img/movie.png",
+        "api_call_function": "./API/Code_API"
     }
 ]

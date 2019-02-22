@@ -50,7 +50,7 @@ function CategoryBox(props) {
     if (typeof props.animeProps !== 'undefined') {
         return (
             <Anime {...props.animeProps}>
-                <Box onClick={props.onClick}>
+                <Box onClick={() => props.onClick(props.name)}>
                     <Image src={props.img}></Image>
                     <Text>{props.name}</Text>
                 </Box>

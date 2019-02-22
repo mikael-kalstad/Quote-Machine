@@ -21,7 +21,6 @@ function Suggestion(props) {
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",
         overflow: "hidden",
-        
     }
 
     let arr = [];

@@ -5,7 +5,6 @@ import TextAnimation from '../TextAnimation';
 
 import Anime from 'react-anime';
 import styled from 'styled-components';
-import './StartMenu.css';
 
 const Wrapper = styled.div`
     background-color: #03998D;
@@ -19,7 +18,7 @@ const Wrapper = styled.div`
     @media screen and (max-width: 850px) {
         padding: 0;
     }
-`;
+`
 
 const Title = styled.h1`
     color: #EEDF08;
@@ -36,7 +35,7 @@ const Title = styled.h1`
         text-align: center;
         padding-left: 0;
     }
-`;
+`
 
 const QuoteText = styled.p`
     color: whitesmoke;
@@ -54,7 +53,7 @@ const QuoteText = styled.p`
         text-align: center;
         /* margin: auto; */
     }
-`;
+`
 
 const CategoryText = styled.p`
     color: #DEDEDC;
@@ -68,12 +67,12 @@ const CategoryText = styled.p`
     @media screen and (max-width: 1100px) {
         font-size: 50px;
     }
-`;
+`
 
 const Image = styled.img`
     width: 80px;
     padding-right: 20px;
-`;
+`
 
 function StartMenu(props) {
     let titleDuration = 400;
@@ -114,14 +113,6 @@ function StartMenu(props) {
                 categoryNames={props.categoryNames}
                 categoryLogos={props.categoryLogos}
                 onClick={props.onClick}
-                
-                // animeProps = {{
-                //     easing: "easeInOutElastic",
-                //     // delay: titleDuration-500,
-                //     duration: 800,
-                //     opacity: [0, 1],
-                //     translateY: [100, 0]
-                // }}
             >   
             </CategoriesSlider>
         </Wrapper>

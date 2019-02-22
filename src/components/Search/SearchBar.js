@@ -13,8 +13,8 @@
 
 import React from 'react';
 import './SearchBar.css';
-import Suggestion from '../Suggestion';
-import { getSuggestions } from './SearchAlg';
+import Suggestion from './Suggestion'; 
+import { getSuggestions } from '../../Search Algorithm/Movie_searchAlg';
 
 class SearchBar extends React.Component {
    constructor(props) {
@@ -31,8 +31,8 @@ class SearchBar extends React.Component {
         // Will only start giving suggestions after specified characters and if there is no timeout
         if (this.state.inputValue.length > this.props.minCharactersBeforeUpdate && !this.state.timeout) {
             this.setState({ timeout: true });
-            console.log("getting results...")
-
+            
+            // Search algorithm provided in seperate file
             getSuggestions(this.state.inputValue)
             .then(data => this.setState({ suggestions: data}))
 
@@ -54,14 +54,12 @@ class SearchBar extends React.Component {
     }   
 
     onChange = (event) => {
-        // Suggestions will not be updated before the setState is finished. 
-        this.setState({ inputValue: event.target.value, visibility: true }, 
-        () => {
-            this.updateSuggestions()
-            if (this.state.inputValue === "") {
-                this.setState({ visibility: false });
-            }
-        })
+        if (this.state.inputValue === "") this.setState({ visibility: false });
+        else {
+            // Suggestions will not be updated before the setState is finished. 
+            this.setState({ inputValue: event.target.value, visibility: true }, 
+            () => { this.updateSuggestions() })
+        }
     }
 
     clearInput = () => {
