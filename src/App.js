@@ -41,7 +41,7 @@ class App extends Component {
 
   goBack = () => this.setState({ quoteCategory: "" });
 
-  categoryNames = ["Movie", "Programming", "Movie", "Programming", "Movie", "Programming"];
+  categoryNames = ["Movie", "Programming", "Movie", "Programming"];
   categoryLogos = [movieLogo, terminal, movieLogo, terminal, movieLogo, terminal];
 
 

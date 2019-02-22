@@ -12,22 +12,34 @@ function CategoriesSlider(props) {
                 img={props.categoryLogos[i]}
                 name={props.categoryNames[i]}
                 onClick={props.onClick}
+                margin={ i === props.categoryNames.length-1 ? "0 30px 0 0" : 0}
+               
+                animeProps = {{
+                    easing: 'easeInOutElastic',
+                    delay: i * 130 + 1000,
+                    duration: 130,
+                    opacity: [0, 1],
+                    // translateX: [700, 0]
+                }}
             ></CategoryBox>
         )
     }
 
-    const Wrapper = styled.div`
+    const Container = styled.div`
         align-self: start;
-        padding: 30px;
-        height: fit-content;
-        max-width: 100%;
+        width: fit-content;
         display: grid;
         grid-gap: 40px;
-        grid-auto-flow: column dense;
+        grid-auto-flow: column;
+    `;
 
+    const Slider = styled.div`
+        max-width: 100%;
+        padding: 30px;
         -webkit-overflow-scrolling: touch;
         overflow-x: auto;
         /* transform: rotate(-90deg); */
+        
        
         ::-webkit-scrollbar {
             background-color:#03998D;
@@ -36,17 +48,13 @@ function CategoriesSlider(props) {
 
         ::-webkit-scrollbar-track {
             background-color:#03998D;
+            margin: 30px;
             
         }
 
         ::-webkit-scrollbar-thumb {
             background-color: #cecece;
             border-radius:16px;
-            /* border:4px solid #fff */
-        }
-
-        ::child{
-            margin-right: 20px;
         }
     `;
     
@@ -54,16 +62,21 @@ function CategoriesSlider(props) {
     if (typeof props.animeProps !== 'undefined') {
         return (
             <Anime {...props.animeProps}>
-                {categoryBoxes}
+                <Slider>
+                    <Container>
+                        {categoryBoxes}
+                    </Container>
+                </Slider>
             </Anime>
         )
     }
 
     return (
-        <Wrapper>
-            {categoryBoxes}
-        </Wrapper>
-        
+        <Slider>
+            <Container>
+                {categoryBoxes}
+            </Container>
+        </Slider>
     )
 }
 

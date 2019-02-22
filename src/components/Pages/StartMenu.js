@@ -1,7 +1,7 @@
 import React from 'react';
 import CategoriesSlider from '../CategoriesSlider';
-import CategoryBox from '../CategoryBox';
 import quoteIcon from '../../img/quotes.png';
+import TextAnimation from '../TextAnimation';
 
 import Anime from 'react-anime';
 import styled from 'styled-components';
@@ -10,10 +10,10 @@ import './StartMenu.css';
 const Wrapper = styled.div`
     background-color: #03998D;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     padding: 40px 0 40px 40px;
-    /* display: grid; */
-    /* grid-template-rows: 20% 40% 10% 30% ; */
+    display: grid;
+    grid-template-rows: 150px auto 100px 1fr;
     align-items: end;
 
     @media screen and (max-width: 850px) {
@@ -50,14 +50,14 @@ const QuoteText = styled.p`
     }
 
     @media screen and (max-width: 850px) {
-        padding: 0 40px 0 0;
+        /* padding: 0 40px 0 0; */
         text-align: center;
-        margin: auto;
+        /* margin: auto; */
     }
 `;
 
 const CategoryText = styled.p`
-    color: whitesmoke;
+    color: #DEDEDC;
     padding-left: 55px;
     padding-bottom: 20px;
     margin: 0;
@@ -67,7 +67,6 @@ const CategoryText = styled.p`
 
     @media screen and (max-width: 1100px) {
         font-size: 50px;
-        /* padding-left: 0; */
     }
 `;
 
@@ -77,29 +76,20 @@ const Image = styled.img`
 `;
 
 function StartMenu(props) {
-
-
-    let titleDuration = 1500
-    let Aprops = {
-        easing: "easeInOutElastic",
-        delay: titleDuration-500,
-        duration: 800,
-        opacity: [0, 1],
-        translateY: [100, 0],
-    }
+    let titleDuration = 400;
 
     return (
         <Wrapper>
             <Anime
                 easing='easeInOutElastic'
-                delay={300}
-                duration={titleDuration}
+                delay={titleDuration-500}
+                duration={800}
                 opacity= {[0, 1]}
                 translateY= {[100, 0]}
             > 
                 <Title>Quotes.</Title>
             </Anime>
-
+                
             <Anime
                 easing='easeInOutElastic'
                 delay={titleDuration-500}
@@ -110,8 +100,16 @@ function StartMenu(props) {
                 <QuoteText><Image src={quoteIcon}></Image>A quote is just a tattoo on the tongue</QuoteText>
             </Anime>
 
-            <CategoryText>Categories</CategoryText>
-            
+            <Anime
+                easing='easeInOutElastic'
+                delay={titleDuration-500}
+                duration={800}
+                opacity= {[0, 1]}
+                translateX= {[700, 0]}
+            >
+                <CategoryText>Categories</CategoryText>
+            </Anime>
+
             <CategoriesSlider
                 categoryNames={props.categoryNames}
                 categoryLogos={props.categoryLogos}
@@ -119,7 +117,7 @@ function StartMenu(props) {
                 
                 // animeProps = {{
                 //     easing: "easeInOutElastic",
-                //     delay: titleDuration-500,
+                //     // delay: titleDuration-500,
                 //     duration: 800,
                 //     opacity: [0, 1],
                 //     translateY: [100, 0]
