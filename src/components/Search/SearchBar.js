@@ -54,12 +54,11 @@ class SearchBar extends React.Component {
     }   
 
     onChange = (event) => {
-        if (this.state.inputValue === "") this.setState({ visibility: false });
-        else {
-            // Suggestions will not be updated before the setState is finished. 
-            this.setState({ inputValue: event.target.value, visibility: true }, 
-            () => { this.updateSuggestions() })
-        }
+        // Suggestions will not be updated before the setState is finished. 
+        this.setState({ 
+            inputValue: event.target.value, 
+            visibility: event.target.value === "" ? false : true 
+        }, () => { this.updateSuggestions() })
     }
 
     clearInput = () => {
@@ -69,7 +68,7 @@ class SearchBar extends React.Component {
 
     clearSuggestions = () => this.setState({ suggestions: {} })
 
-    showSuggestions = () => this.setState({ visibility: true })
+    // showSuggestions = () => this.setState({ visibility: true })
 
     render() {
         return ( 
@@ -98,14 +97,14 @@ class SearchBar extends React.Component {
                     }
                 </div>
 
-                {this.state.visibility ?
+                {this.state.visibility &&
                     <Suggestion 
                         id_ul="suggestions"
                         id_li="suggestion_li"
                         updateToSuggestion={this.updateParent}
                         results={this.state.suggestions}
                     />
-                :null} 
+                } 
             </div>
         )
     }

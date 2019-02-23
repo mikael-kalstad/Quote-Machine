@@ -8,13 +8,29 @@
 */
 
 import React from 'react';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+
+const Link = styled.a`
+    text-decoration: none;
+    
+    :visited {
+        color: inherit;
+    }
+`
 
 function Icon(props) {
     return (
-        <div style={props.style} id={props.id}>
-            <a className={props.classNameA} href={props.link} onClick={props.onChange} target={props.target}>
-                <i className={props.classNameI}></i>
-            </a>
+        <div style={props.style}>
+            <Link 
+                className={props.classNameA} 
+                href={props.link} onClick={props.onChange} 
+                target={props.target}
+            >
+                <FontAwesomeIcon icon="props.iconName" />
+            </Link>
         </div>
     )
 }

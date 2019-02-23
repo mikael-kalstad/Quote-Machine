@@ -3,7 +3,8 @@ import styled, {createGlobalStyle} from 'styled-components';
 
 import StartMenu from './components/Pages/StartMenu';
 import QuotePage from './components/Pages/QuotePage';
-import Categories from './Categories.json';
+import CategoryData from './Categories.json';
+
 import movieLogo from './img/movie.png';
 import terminal from './img/terminal.png';
 
@@ -25,11 +26,11 @@ class App extends Component {
 
   setQuoteCategory = (category) => this.setState({ quoteCategory: category });
 
-  // Will find appropriate HSL color and return it
+  // Will find appropriate HSL color
   randomHSL = () => {
     let random = (min, max) => Math.round(min + Math.random()*(max-min));
 
-    // Only pick color that have good contrast with white
+    // Will only pick colors that have good contrast with white
     let hue = random(0, 360);
     let saturation = random(30, 100);
     let lightness = random(70, 80);
@@ -49,8 +50,7 @@ class App extends Component {
       <>
         {(this.state.quoteCategory === "") ? 
             <StartMenu 
-              categoryNames={this.categoryNames}
-              categoryLogos={this.categoryLogos}
+              categoryData={CategoryData}
               onClick={this.setQuoteCategory}
               quoteCategories={this.quoteCategories}
             /> 
@@ -58,6 +58,7 @@ class App extends Component {
             <QuotePage 
               color={this.state.color}
               updateColor={this.updateColor}
+              searchbar={true}
               quoteCategory={this.state.quoteCategory}
             />
         }

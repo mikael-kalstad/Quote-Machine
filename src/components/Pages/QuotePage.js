@@ -39,10 +39,10 @@ class QuotePage extends Component {
     resetFilter = () => this.setState({ movieFilter: [] })
 
     random = (min, max) => Math.round(min + Math.random()*(max-min));
-
+    
     Container = styled.div`
         height: 100vh;
-        background-color: ${this.props.color};
+        background-color: ${props => props.color};
         display: grid;
         grid-template-rows: ${searchbar => searchbar ? "auto 60px 1fr" : "auto 1fr"};
     `
@@ -54,8 +54,9 @@ class QuotePage extends Component {
     `
 
     render() {
+        console.log(this.props.color);
         return (
-            <this.Container backgroundColor={this.state.color}>
+            <this.Container color={this.props.color}>
                 <this.Title> {this.props.quoteCategory} Quotes</this.Title>
                 
                 <Icon 

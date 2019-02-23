@@ -5,14 +5,26 @@ import CategoryBox from './CategoryBox';
 
 function CategoriesSlider(props) {
     let categoryBoxes = [];
+    let data = props.categoryData;
 
-    for (let i = 0; i < props.categoryNames.length; i++) {
+    const checkForKey = (obj, keyName) => {
+        if (obj.hasOwnProperty(keyName)) return true;
+        console.log("Error in category data, unknown keyname in file \"Categories.json\"");
+        return false;
+    }
+
+    for (let i = 0; i < data.length; i++) {
+        // Requires that name and logo are defined, otherwise it will not be rendered
+        if (!checkForKey(data[i], "name") || !checkForKey(data[i], "logo")) continue;
+
         categoryBoxes.push(
             <CategoryBox
-                img={props.categoryLogos[i]}
-                name={props.categoryNames[i]}
+                name={props.categoryData[i]["name"]}
+                logo={props.categoryData[i]["logo"]}
                 onClick={props.onClick}
-                margin={ i === props.categoryNames.length-1 ? "0 30px 0 0" : 0}
+
+                // Last box needs right margin
+                margin={ i === props.categoryData.length-1 ? "0 30px 0 0" : 0}
                
                 animeProps = {{
                     easing: 'easeInOutElastic',

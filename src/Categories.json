@@ -1,13 +1,21 @@
 [
     {
         "name": "Movie",
-        "logo": "./img/movie.png",
-        "api_call_function": "./API/Movie_API",
-        "search_algorithm": "./Search Algorithm/Movie_searchAlg"
+        "logo": "logos/movie.png",
+        "api_call_function": "API/Movie_API",
+        "search_algorithm": "Search Algorithm/Movie_searchAlg"
     },
     {
         "name": "Code",
-        "logo": "./img/movie.png",
-        "api_call_function": "./API/Code_API"
+        "logo": "logos/terminal.png",
+        "api_call_function": "API/Code_API"
+    },
+    {
+        "name": "Games",
+        "logo": "logos/movie.png"
+    },
+    {
+        "name": "Sport",
+        "logo": "logos/terminal.png"
     }
 ]

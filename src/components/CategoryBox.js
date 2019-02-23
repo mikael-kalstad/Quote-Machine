@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Anime from 'react-anime';
+import movieLogo from '../img/movie.png';
 
 function CategoryBox(props) {
     const Box = styled.div`
@@ -34,7 +35,7 @@ function CategoryBox(props) {
         }
     `;
     
-    const Image = styled.img`
+    const Logo = styled.img`
         max-width: 80%;
         max-height: 100%;
         object-fit: cover;
@@ -45,13 +46,13 @@ function CategoryBox(props) {
         font-size: ${fontSize => props.fontSize ? props.fontSize: "25px"};
         color: ${color => props.color ? props.color: "#DEDDDD"};
     `;
-
+    console.log("LOGO",props.logo)
     // If animation is defined
     if (typeof props.animeProps !== 'undefined') {
         return (
             <Anime {...props.animeProps}>
                 <Box onClick={() => props.onClick(props.name)}>
-                    <Image src={props.img}></Image>
+                    <Logo src={props.logo}></Logo>
                     <Text>{props.name}</Text>
                 </Box>
             </Anime>
@@ -60,7 +61,7 @@ function CategoryBox(props) {
 
     return (
         <Box onClick={props.onClick}>
-            <Image src={props.img}></Image>
+            <Logo src={props.logo}></Logo>
             <Text>{props.name}</Text>
         </Box>
     )

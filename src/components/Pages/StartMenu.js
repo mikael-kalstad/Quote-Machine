@@ -2,6 +2,7 @@ import React from 'react';
 import CategoriesSlider from '../CategoriesSlider';
 import quoteIcon from '../../img/quotes.png';
 import TextAnimation from '../TextAnimation';
+import Icon from '../Icon';
 
 import Anime from 'react-anime';
 import styled from 'styled-components';
@@ -89,6 +90,13 @@ function StartMenu(props) {
                 <Title>Quotes.</Title>
             </Anime>
                 
+            <Icon 
+                link="https://www.tumblr.com"
+                classNameI="fab fa-tumblr"
+                classNameA="icon"
+                target="_blank"
+            />
+
             <Anime
                 easing='easeInOutElastic'
                 delay={titleDuration-500}
@@ -110,8 +118,7 @@ function StartMenu(props) {
             </Anime>
 
             <CategoriesSlider
-                categoryNames={props.categoryNames}
-                categoryLogos={props.categoryLogos}
+                categoryData={props.categoryData}
                 onClick={props.onClick}
             >   
             </CategoriesSlider>

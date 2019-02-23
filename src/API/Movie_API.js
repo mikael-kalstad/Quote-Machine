@@ -2,6 +2,8 @@
     if (filter != [] || filter != undefined) getSpecificQuote();
     getRandomQuote();
  }
+
+ const random = (min, max) => Math.round(min + Math.random()*(max-min));
  
  // General method for both movie functions
  const updateMovieState = (data) => {
