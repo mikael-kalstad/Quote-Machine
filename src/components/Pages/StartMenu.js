@@ -1,7 +1,6 @@
 import React from 'react';
 import CategoriesSlider from '../CategoriesSlider';
-import quoteIcon from '../../img/quotes.png';
-import TextAnimation from '../TextAnimation';
+// import TextAnimation from '../TextAnimation';
 import Icon from '../Icon';
 
 import Anime from 'react-anime';
@@ -90,13 +89,6 @@ function StartMenu(props) {
                 <Title>Quotes.</Title>
             </Anime>
                 
-            <Icon 
-                link="https://www.tumblr.com"
-                classNameI="fab fa-tumblr"
-                classNameA="icon"
-                target="_blank"
-            />
-
             <Anime
                 easing='easeInOutElastic'
                 delay={titleDuration-500}
@@ -104,7 +96,7 @@ function StartMenu(props) {
                 opacity= {[0, 1]}
                 translateY= {[100, 0]}
             > 
-                <QuoteText><Image src={quoteIcon}></Image>A quote is just a tattoo on the tongue</QuoteText>
+                <QuoteText><Image src='/logos/quotes.png'></Image>A quote is just a tattoo on the tongue</QuoteText>
             </Anime>
 
             <Anime

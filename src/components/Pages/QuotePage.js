@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import QuoteBox from '../QuoteBox';
-import Icon from '../Icon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SearchBar from '../Search/SearchBar';
-// import Anime from 'react-anime';
 
 class QuotePage extends Component {
     constructor(props) {
@@ -12,39 +11,82 @@ class QuotePage extends Component {
         this.state = {
             quote: "",
             author: "",
-            filter: []
+            filter: [],
+            api_module: null,
+            search_module: null
         }
-        // Initializer, get quote
-        this.handleClick();
     }
+
+    componentDidMount() {
+        // Find where the modules are located, path-data stored in props.categoryData
+        let paths = this.getFunctionPaths();
+        console.log(paths)
+        // Api-module
+        if (paths.length >= 1) {
+            import('../../' + paths[0])
+            .then(module => {
+                this.setState({ api_module: module }, () => this.updateContent());
+            })
+        }
+
+        // Search-module
+        if (paths.length >= 2) {
+            import('../../' + paths[1])
+            .then(module => {
+                this.setState({ search_module: module })
+            })
+        }
+    }
+
+    getFunctionPaths = () => {
+        let paths = [];
+        let data = this.props.categoryData;
+
+        for (let i = 0; i < data.length; i++) {
+            if (this.checkForKey(data[i], "name") && data[i]["name"] === this.props.categoryName) {
+                paths.push(data[i]["api_function"]);
+                
+                if (this.checkForKey(data[i], "search_algorithm")) {
+                    paths.push(data[i]["search_algorithm"]);
+                }
+            }
+        }
+        return paths;
+    }
+
+    checkForKey = (obj, keyName) => obj.hasOwnProperty(keyName);
     
-    // Update method for button and search
-    handleClick = ()  => {
+    // Update method for handling click and search
+    updateContent = ()  => {
         this.props.updateColor();
+
+        this.state.api_module.default(this.state.filter)
+        .then(data => this.setState({ quote: data[0], author: data[1]}));
     }
 
-    // Method that child will call to update moviefilter
+    // Method to update filter, likely used by a child component with search functionality
     updateFilter = (arr) => {
-        if (arr === undefined) return undefined;
-        if (arr[0] === "content") this.setState({ quote: arr[2], author: arr[3]+', '+arr[4] });
-        else {
-            // Always the last in the array that needs to be lowercase with - between words
-            arr[arr.length-1] = arr[arr.length-1].toLowerCase().trim().split(' ').join('-');
-            
-            this.setState({ filter: arr });
-            this.handleClick(); // Update the quote with the moviefilter applied
-        }
+        if (arr === undefined || arr.length === 0) return false;
+        
+        // If the filter is a quote, just render the quote directly
+        if (arr[0] === "Quote") {
+            this.setState({ quote: arr[1], author: arr[2] + ', ' + arr[3] });
+            this.resetFilter();
+            this.props.updateColor();
+        } else {
+            this.setState({ filter: arr }, () => {
+                this.updateContent(); // Update  with the filter applied, after state is updated
+            })
+        }   
     }
 
-    resetFilter = () => this.setState({ movieFilter: [] })
-
-    random = (min, max) => Math.round(min + Math.random()*(max-min));
+    resetFilter = () => this.setState({ filter: [] })
     
     Container = styled.div`
         height: 100vh;
         background-color: ${props => props.color};
         display: grid;
-        grid-template-rows: ${searchbar => searchbar ? "auto 60px 1fr" : "auto 1fr"};
+        grid-template-rows: ${search => this.state.search_module ? "auto 60px 1fr" : "auto 1fr"};
     `
 
     Title = styled.h1`
@@ -52,27 +94,32 @@ class QuotePage extends Component {
         color: white;
         font-size: 50px;
     `
+    Back = styled.button`
+        cursor: pointer;
+        color: white;
+        font-size: 50px;
+        
+    `
 
     render() {
-        console.log(this.props.color);
         return (
             <this.Container color={this.props.color}>
                 <this.Title> {this.props.quoteCategory} Quotes</this.Title>
                 
-                <Icon 
-                    id="goBack"
-                    link=""
-                    classNameI="fas fa-chevron-circle-left"
-                    classNameA="icon-goBack"
-                />
+                <this.Back onclick={() => this.props.setCategoryName("")}>
+                    <FontAwesomeIcon icon="arrow-alt-circle-left" />
+                </this.Back>
 
-                {this.props.searchbar && 
+                {/* Searchbar will only render if search-module is defined */}
+                {this.state.search_module !== null && 
                     <SearchBar 
+                        search_module={this.state.search_module}
                         containerStyle={{width: "400px"}}
                         updateFilter={this.updateFilter}
                         resetFilter={this.resetFilter}
                         placeHolder="James Bond..."
                         // minCharactersBeforeUpdate="2"
+                        numOfSuggestions={6}
                         suggestionDelay="500"
                     />
                 }
@@ -80,12 +127,10 @@ class QuotePage extends Component {
                 <QuoteBox 
                     width= "600px"
                     color={this.props.color}     
-                    // quote={this.state.quote}
-                    // author={this.state.author}
-                    quote="I want some money! I am an american, murica fuck yeah!"
-                    author="Stephen Hawking, Golden Eye"
+                    quote={this.state.quote}
+                    author={this.state.author}
                     search={true}
-                    onClick={this.handleClick}
+                    onClick={this.updateContent}
                 />
             </this.Container>
         )

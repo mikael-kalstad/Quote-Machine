@@ -14,7 +14,7 @@
 import React from 'react';
 import './SearchBar.css';
 import Suggestion from './Suggestion'; 
-import { getSuggestions } from '../../Search Algorithm/Movie_searchAlg';
+import getSuggestions from '../../Search Algorithm/Movie_searchAlg';
 
 class SearchBar extends React.Component {
    constructor(props) {
@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
             this.setState({ timeout: true });
             
             // Search algorithm provided in seperate file
-            getSuggestions(this.state.inputValue)
+            getSuggestions(this.state.inputValue, this.props.numOfSuggestions)
             .then(data => this.setState({ suggestions: data}))
 
             // Potential delay to prevent too many API calls when typing, specified as a prop
@@ -44,8 +44,10 @@ class SearchBar extends React.Component {
    updateParent = (arr) => {
         if (arr === undefined || arr.length === 0) return false;
         this.clearSuggestions();
-
-        this.setState({ inputValue: arr[arr.length-1], visibility: false });
+        this.setState({ 
+            inputValue: arr[0] === "Quote" ? arr[1] : arr[arr.length-1], 
+            visibility: false 
+        });
         this.props.updateFilter(arr); // Parent function call
     }
 
@@ -67,8 +69,6 @@ class SearchBar extends React.Component {
     }
 
     clearSuggestions = () => this.setState({ suggestions: {} })
-
-    // showSuggestions = () => this.setState({ visibility: true })
 
     render() {
         return ( 

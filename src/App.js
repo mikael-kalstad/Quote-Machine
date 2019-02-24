@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
-import styled, {createGlobalStyle} from 'styled-components';
+// import styled, {createGlobalStyle} from 'styled-components';
 
 import StartMenu from './components/Pages/StartMenu';
 import QuotePage from './components/Pages/QuotePage';
 import CategoryData from './Categories.json';
 
-import movieLogo from './img/movie.png';
-import terminal from './img/terminal.png';
+// Adding icons from fontawsome 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faQuoteLeft, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faQuoteLeft, faArrowAltCircleLeft);
 
-const GlobalStyles = createGlobalStyle`
-  body {
-    @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
-    font-family: 'Abril Fatface', sans-serif;
-  }
-`
+// const GlobalStyles = createGlobalStyle`
+//   body {
+//     @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+//     font-family: 'Abril Fatface', sans-serif;
+//   }
+// `
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      quoteCategory: "",
+      categoryName: "",
       color: this.randomHSL(),
     }
   }
 
-  setQuoteCategory = (category) => this.setState({ quoteCategory: category });
+  setCategoryName = (category) => this.setState({ categoryName: category });
 
   // Will find appropriate HSL color
   randomHSL = () => {
@@ -40,26 +43,26 @@ class App extends Component {
 
   updateColor = () => this.setState({ color: this.randomHSL() });
 
-  goBack = () => this.setState({ quoteCategory: "" });
+  // goBack = () => this.setState({ categoryName: "" });
 
-  categoryNames = ["Movie", "Programming", "Movie", "Programming"];
-  categoryLogos = [movieLogo, terminal, movieLogo, terminal, movieLogo, terminal];
+  checkForKey = (obj, keyName) => obj.hasOwnProperty(keyName);
 
   render() {    
     return (
       <>
-        {(this.state.quoteCategory === "") ? 
+        {(this.state.categoryName === "") ? 
             <StartMenu 
               categoryData={CategoryData}
-              onClick={this.setQuoteCategory}
+              onClick={this.setCategoryName}
               quoteCategories={this.quoteCategories}
             /> 
           :
             <QuotePage 
+              setCategoryName={this.setCategoryName}
               color={this.state.color}
               updateColor={this.updateColor}
-              searchbar={true}
-              quoteCategory={this.state.quoteCategory}
+              categoryData={CategoryData}
+              categoryName={this.state.categoryName}
             />
         }
       </>

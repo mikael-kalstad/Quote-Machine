@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Anime from 'react-anime';
-import movieLogo from '../img/movie.png';
 
 function CategoryBox(props) {
     const Box = styled.div`
@@ -46,7 +45,7 @@ function CategoryBox(props) {
         font-size: ${fontSize => props.fontSize ? props.fontSize: "25px"};
         color: ${color => props.color ? props.color: "#DEDDDD"};
     `;
-    console.log("LOGO",props.logo)
+
     // If animation is defined
     if (typeof props.animeProps !== 'undefined') {
         return (

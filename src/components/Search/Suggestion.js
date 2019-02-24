@@ -23,6 +23,15 @@ function Suggestion(props) {
         overflow: "hidden",
     }
 
+    /*
+    Expects an array with value and typename, can have other information, 
+    but the first value must be the value and the second must be the typename.
+
+    SYNTAX: 
+        arr[0] = value, e.g. James Bond
+        arr[1] = typename, e.g Actor
+    */
+
     let arr = [];
     for (let i in props.results) {
         arr.push(
@@ -31,8 +40,8 @@ function Suggestion(props) {
                     style={buttonStyle} 
                     onClick={() => props.updateToSuggestion(props.results[i])}
                 >
-                    {props.results[i][2]}
-                    <p style={categoryStyle}>{props.results[i][1]}</p>
+                    {props.results[i][1]}
+                    <p style={categoryStyle}>{props.results[i][0]}</p>
                 </button>
             </li>
         )

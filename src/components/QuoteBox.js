@@ -1,12 +1,6 @@
 import React  from 'react';
 import styled from 'styled-components';
-import Icon from './Icon';
-
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { fab } from '@fortawesome/free-brands-svg-icons'
-// import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
-
-// library.add(fab, faCheckSquare, faCoffee)
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function QuoteBox(props) {
     const Container = styled.div`
@@ -35,9 +29,9 @@ function QuoteBox(props) {
         font-size: 28px;
     `
 
-    const QuoteSymbol = styled.i`
-        padding-right: 10px;
-        font-size: 37px;
+    const QuoteSymbol = styled.span`
+        padding: 15px;
+        font-size: 40px;
     `
 
     const Author = styled.p`
@@ -46,11 +40,17 @@ function QuoteBox(props) {
         margin-right: 20px;
     `
 
-    const Twitter = styled.div`
+    const Twitter = styled.a`
+        cursor: pointer;
+        color: inherit;
+        font-size: 30px;
         grid-area: twitter;
     `
 
-    const Tumblr = styled.div`
+    const Tumblr = styled.a`
+        cursor: pointer;
+        color: inherit;
+        font-size: 30px;
         grid-area: tumblr;
     `
 
@@ -71,33 +71,23 @@ function QuoteBox(props) {
         cursor: pointer;
     `
 
-    let twitterLink="https://www.twitter.com/intent/tweet?text=Check out this quote: \"" + props.quote + "\"";
+    let twitterLink="https://www.twitter.com/intent/tweet?text=Check out this quote: \"" + props.quote + "\", " + props.author;
 
     return (
         <Container>
             <Quote>
-                <QuoteSymbol className="fas fa-quote-left"></QuoteSymbol>
+                <QuoteSymbol><FontAwesomeIcon icon="quote-left" /></QuoteSymbol>
                 {props.quote}
             </Quote>
 
             <Author>- {props.author}</Author>
 
-            <Twitter>
-                <Icon 
-                    link={twitterLink}
-                    classNameI="fab fa-twitter"
-                    classNameA="icon"
-                    target="_blank"
-                />
+            <Twitter href={twitterLink} target="_blank">
+                <FontAwesomeIcon icon={["fab" ,"twitter"]} />
             </Twitter>
 
-            <Tumblr>
-                <Icon 
-                    link="https://www.tumblr.com"
-                    classNameI="fab fa-tumblr"
-                    classNameA="icon"
-                    target="_blank"
-                />
+            <Tumblr href="https://www.tumblr.com" target="_blank">
+                <FontAwesomeIcon icon={["fab" ,"tumblr"]} />
             </Tumblr>
             
             {/* <Loading 

@@ -19,6 +19,7 @@ function CategoriesSlider(props) {
 
         categoryBoxes.push(
             <CategoryBox
+                key={i}
                 name={props.categoryData[i]["name"]}
                 logo={props.categoryData[i]["logo"]}
                 onClick={props.onClick}
