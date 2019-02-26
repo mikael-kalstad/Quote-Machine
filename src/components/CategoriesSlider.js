@@ -29,10 +29,10 @@ function CategoriesSlider(props) {
                
                 animeProps = {{
                     easing: 'easeInOutElastic',
-                    delay: i * 130 + 1000,
-                    duration: 130,
+                    delay: i * 100 + 600,
+                    duration: 100,
                     opacity: [0, 1],
-                    // translateX: [700, 0]
+                    translateX: [500, 0]
                 }}
             ></CategoryBox>
         )

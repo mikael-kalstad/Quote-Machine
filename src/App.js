@@ -8,8 +8,8 @@ import CategoryData from './Categories.json';
 // Adding icons from fontawsome 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faQuoteLeft, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faQuoteLeft, faArrowAltCircleLeft);
+import { faQuoteLeft, faArrowAltCircleLeft, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faQuoteLeft, faArrowAltCircleLeft, faSearch, faTimes);
 
 // const GlobalStyles = createGlobalStyle`
 //   body {
@@ -27,7 +27,10 @@ class App extends Component {
     }
   }
 
-  setCategoryName = (category) => this.setState({ categoryName: category });
+  setCategoryName = (category) => {
+    this.setState({ categoryName: category });
+    console.log("changing category...")
+  }
 
   // Will find appropriate HSL color
   randomHSL = () => {

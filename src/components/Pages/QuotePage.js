@@ -85,6 +85,7 @@ class QuotePage extends Component {
     Container = styled.div`
         height: 100vh;
         background-color: ${props => props.color};
+        transition: all 1s linear;
         display: grid;
         grid-template-rows: ${search => this.state.search_module ? "auto 60px 1fr" : "auto 1fr"};
     `
@@ -94,19 +95,20 @@ class QuotePage extends Component {
         color: white;
         font-size: 50px;
     `
-    Back = styled.button`
+    Back = styled.div`
         cursor: pointer;
         color: white;
         font-size: 50px;
-        
+        position: absolute;
+        padding: 30px;
     `
 
     render() {
         return (
             <this.Container color={this.props.color}>
-                <this.Title> {this.props.quoteCategory} Quotes</this.Title>
+                <this.Title> {this.props.categoryName} Quotes</this.Title>
                 
-                <this.Back onclick={() => this.props.setCategoryName("")}>
+                <this.Back onClick={() => this.props.setCategoryName("")}>
                     <FontAwesomeIcon icon="arrow-alt-circle-left" />
                 </this.Back>
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import CategoriesSlider from '../CategoriesSlider';
 // import TextAnimation from '../TextAnimation';
-import Icon from '../Icon';
 
 import Anime from 'react-anime';
 import styled from 'styled-components';
@@ -12,7 +11,7 @@ const Wrapper = styled.div`
     min-height: 100vh;
     padding: 40px 0 40px 40px;
     display: grid;
-    grid-template-rows: 150px auto 100px 1fr;
+    grid-template-rows: 150px 1fr 100px auto 30px;
     align-items: end;
 
     @media screen and (max-width: 850px) {
@@ -69,10 +68,10 @@ const CategoryText = styled.p`
     }
 `
 
-const Image = styled.img`
-    width: 80px;
-    padding-right: 20px;
-`
+    const Image = styled.img`
+        width: 80px;
+        padding-right: 20px;
+    `
 
 function StartMenu(props) {
     let titleDuration = 400;
@@ -108,7 +107,7 @@ function StartMenu(props) {
             >
                 <CategoryText>Categories</CategoryText>
             </Anime>
-
+            
             <CategoriesSlider
                 categoryData={props.categoryData}
                 onClick={props.onClick}

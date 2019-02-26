@@ -14,7 +14,7 @@
 import React from 'react';
 import './SearchBar.css';
 import Suggestion from './Suggestion'; 
-import getSuggestions from '../../Search Algorithm/Movie_searchAlg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class SearchBar extends React.Component {
    constructor(props) {
@@ -32,8 +32,8 @@ class SearchBar extends React.Component {
         if (this.state.inputValue.length > this.props.minCharactersBeforeUpdate && !this.state.timeout) {
             this.setState({ timeout: true });
             
-            // Search algorithm provided in seperate file
-            getSuggestions(this.state.inputValue, this.props.numOfSuggestions)
+            // Search algorithm provided in props
+            this.props.search_module.default(this.state.inputValue, this.props.numOfSuggestions)
             .then(data => this.setState({ suggestions: data}))
 
             // Potential delay to prevent too many API calls when typing, specified as a prop
@@ -88,11 +88,11 @@ class SearchBar extends React.Component {
                     {/* Button for searching or clearing input */}
                     {this.state.inputValue === "" ? 
                         <button className="search-btn" style={{cursor: "default"}}>
-                            <i className="fas fa-search"></i>
+                            <FontAwesomeIcon icon="search" />
                         </button> 
                         :
-                        <button className="search-btn" >
-                            <i className="fas fa-times" onClick={this.clearInput}></i>
+                        <button className="search-btn" onClick={this.clearInput}>
+                            <FontAwesomeIcon icon="times" />
                         </button>
                     }
                 </div>
