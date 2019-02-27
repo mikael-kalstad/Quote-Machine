@@ -6,16 +6,24 @@
         "search_algorithm": "Search Algorithm/Movie_searchAlg"
     },
     {
+        "name": "Breaking Bad",
+        "logo": "logos/breaking-bad.png",
+        "api_function": "API/BreakingBad_API"
+    },
+    {
         "name": "Code",
-        "logo": "logos/terminal.png",
+        "logo": "logos/code.png",
         "api_function": "API/Code_API"
     },
     {
-        "name": "Games",
-        "logo": "logos/movie.png"
+        "name": "Ron Swanson",
+        "logo": "logos/swanson.png",
+        "api_function": "API/RonSwanson_API"
     },
     {
-        "name": "Sport",
-        "logo": "logos/terminal.png"
+        "name": "Inspiration",
+        "logo": "logos/creativity.png",
+        "api_function": "API/Inspiration_API",
+        "search_algorithm": "Search Algorithm/Inspiration_searchAlg"
     }
 ]

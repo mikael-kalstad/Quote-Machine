@@ -22,7 +22,6 @@ class QuoteBox extends Component {
     }
 
     render() {
-        console.log(this.state.opacity);
         const Container = styled.div`
             width: ${this.props.width};
             color: ${this.props.color};

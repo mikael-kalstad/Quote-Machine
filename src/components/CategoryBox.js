@@ -12,13 +12,13 @@ function CategoryBox(props) {
         cursor: pointer;
         
         display: grid;
-        grid-template-rows: 60% 40%;
+        grid-template-rows: 70% 30%;
         justify-items: center;
         align-items: center;
         transition: transform 150ms ease-in-out;
        
         :hover {
-            transform: scale(1.06);
+            transform: scale(1.08);
         }
 
         :active {
@@ -59,7 +59,7 @@ function CategoryBox(props) {
     }
 
     return (
-        <Box onClick={props.onClick}>
+        <Box onClick={() => props.onClick(props.name)}>
             <Logo src={props.logo}></Logo>
             <Text>{props.name}</Text>
         </Box>

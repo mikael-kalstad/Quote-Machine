@@ -27,10 +27,7 @@ class App extends Component {
     }
   }
 
-  setCategoryName = (category) => {
-    this.setState({ categoryName: category });
-    console.log("changing category...")
-  }
+  setCategoryName = (category) => this.setState({ categoryName: category });
 
   // Will find appropriate HSL color
   randomHSL = () => {

@@ -33,8 +33,6 @@ const checkForSuggestions = (data, input, numOfSuggestions) => {
     - Syntax: [Typename, path to the actual value in data]
     - Special syntax for Quotes: [Typename, path to quote, path to actor(author), path to movietitle] 
     */
-    
-    // actor, categories, content, character, movie
 
     // Find suggestions in data, number of suggestions limited to numOfSuggestions variable
     for (let i = 0; i < data.length; i++) {

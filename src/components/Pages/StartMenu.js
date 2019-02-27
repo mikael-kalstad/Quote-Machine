@@ -103,9 +103,9 @@ function StartMenu(props) {
                 delay={titleDuration-500}
                 duration={800}
                 opacity= {[0, 1]}
-                translateX= {[700, 0]}
+                translateY= {[400, 0]}
             >
-                <CategoryText>Categories</CategoryText>
+                <CategoryText>Categor{props.categoryData.length >= 1 ? 'ies' : 'y'}</CategoryText>
             </Anime>
             
             <CategoriesSlider

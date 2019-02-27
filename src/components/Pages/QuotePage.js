@@ -20,7 +20,7 @@ class QuotePage extends Component {
     componentDidMount() {
         // Find where the modules are located, path-data stored in props.categoryData
         let paths = this.getFunctionPaths();
-        console.log(paths)
+      
         // Api-module
         if (paths.length >= 1) {
             import('../../' + paths[0])
@@ -59,7 +59,7 @@ class QuotePage extends Component {
     // Update method for handling click and search
     updateContent = ()  => {
         this.props.updateColor();
-
+        console.log("return", this.state.api_module.default())
         this.state.api_module.default(this.state.filter)
         .then(data => this.setState({ quote: data[0], author: data[1]}));
     }

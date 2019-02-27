@@ -14,8 +14,11 @@ function CategoriesSlider(props) {
     }
 
     for (let i = 0; i < data.length; i++) {
-        // Requires that name and logo are defined, otherwise it will not be rendered
-        if (!checkForKey(data[i], "name") || !checkForKey(data[i], "logo")) continue;
+        // Requires that name, logo and api-function are defined, otherwise it will not be rendered.
+        // Search functionality is optional.
+        if (!checkForKey(data[i], "name") 
+            || !checkForKey(data[i], "logo") 
+            || !checkForKey(data[i], "api_function")) continue;
 
         categoryBoxes.push(
             <CategoryBox
@@ -27,13 +30,13 @@ function CategoriesSlider(props) {
                 // Last box needs right margin
                 margin={ i === props.categoryData.length-1 ? "0 30px 0 0" : 0}
                
-                animeProps = {{
-                    easing: 'easeInOutElastic',
-                    delay: i * 100 + 600,
-                    duration: 100,
-                    opacity: [0, 1],
-                    translateX: [500, 0]
-                }}
+                // animeProps = {{
+                //     easing: 'linear',
+                //     delay: i * 100 + 300,
+                //     duration: 50,
+                //     opacity: [0, 1],
+                //     translateX: [200, 0],
+                // }}
             ></CategoryBox>
         )
     }

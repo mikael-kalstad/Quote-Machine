@@ -51,3 +51,7 @@ Documentation about the API's I used for the quotes can be found in these links.
 **Programming Quotes**: http://quotes.stormconsultancy.co.uk/api
 
 **Movie Quotes**: https://juanroldan.com.ar/movie-quotes-api/#introduction
+
+**Breaking Bad**: https://github.com/shevabam/breaking-bad-quotes
+
+**Ron Swanson**: https://github.com/jamesseanwright/ron-swanson-quotes#ron-swanson-quotes-api
