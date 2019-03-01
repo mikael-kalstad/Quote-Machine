@@ -8,8 +8,8 @@ import CategoryData from './Categories.json';
 // Adding icons from fontawsome 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faQuoteLeft, faArrowAltCircleLeft, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faQuoteLeft, faArrowAltCircleLeft, faSearch, faTimes);
+import { faQuoteLeft, faArrowAltCircleLeft, faSearch, faTimes, faSpinner } from '@fortawesome/free-solid-svg-icons'
+library.add(fab, faQuoteLeft, faArrowAltCircleLeft, faSearch, faTimes, faSpinner);
 
 // const GlobalStyles = createGlobalStyle`
 //   body {

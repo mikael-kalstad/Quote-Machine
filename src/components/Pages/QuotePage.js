@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import QuoteBox from '../QuoteBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SearchBar from '../Search/SearchBar';
+import RateLimiterWarning from '../RateLimiterWarning';
+import ControlsHint from '../ControlsHint';
+import Anime from 'react-anime';
 
 class QuotePage extends Component {
     constructor(props) {
@@ -13,55 +16,116 @@ class QuotePage extends Component {
             author: "",
             filter: [],
             api_module: null,
-            search_module: null
+            search_module: null,
+            search_placeholder: "Search for...",
+            updateTimeOut: false,
+            rateLimiterCount: 0,
+            rateLimit: false
         }
     }
 
     componentDidMount() {
         // Find where the modules are located, path-data stored in props.categoryData
-        let paths = this.getFunctionPaths();
-      
+        // Syntax: [API_MODULE, SEARCH_MODULE (optional), Search_placeholder (optional)]
+        let filterData = this.getCategoryData();
+        
+        // Error msg if api_module is not defined
+        if (filterData.length === 0) {
+            console.log("Error, api_module must be defined in categorydata. Check Categories.json if api_module is defined.");
+        }
+
         // Api-module
-        if (paths.length >= 1) {
-            import('../../' + paths[0])
+        if (filterData.length >= 1) {
+            import('../../' + filterData[0])
             .then(module => {
                 this.setState({ api_module: module }, () => this.updateContent());
             })
         }
 
         // Search-module
-        if (paths.length >= 2) {
-            import('../../' + paths[1])
+        if (filterData.length >= 2) {
+            import('../../' + filterData[1])
             .then(module => {
                 this.setState({ search_module: module })
             })
         }
+
+        // Search-placeholder
+        if (filterData.length >= 3) {
+            this.setState({ search_placeholder: filterData[2] })
+        }
+
+        // Adding key listener for Enter and Space, will update quote
+        let down = false; // Prevent repeating updates!
+
+        document.addEventListener("keydown", (e) => {
+            // Note: key " " is spacebar
+            if (!down && (e.key === "Enter" || e.key === " ")) {
+                down = true;
+                this.updateContent();
+            }
+        }, false);
+
+        // After key is up, it can update again if key is pressed
+        document.addEventListener("keyup", (e) => down = false);
     }
 
-    getFunctionPaths = () => {
-        let paths = [];
+    getCategoryData = () => {
+        let filterData = [];
         let data = this.props.categoryData;
+        const  checkForKey = (obj, keyName) => obj.hasOwnProperty(keyName);
 
         for (let i = 0; i < data.length; i++) {
-            if (this.checkForKey(data[i], "name") && data[i]["name"] === this.props.categoryName) {
-                paths.push(data[i]["api_function"]);
+            if (checkForKey(data[i], "name") && data[i]["name"] === this.props.categoryName) {
+                filterData.push(data[i]["api_function"]);
                 
-                if (this.checkForKey(data[i], "search_algorithm")) {
-                    paths.push(data[i]["search_algorithm"]);
+                if (checkForKey(data[i], "search_algorithm")) {
+                    filterData.push(data[i]["search_algorithm"]);
+
+                    if (checkForKey(data[i], "search_placeholder")) {
+                        filterData.push(data[i]["search_placeholder"]);
+                    }
                 }
             }
         }
-        return paths;
+        return filterData;
     }
-
-    checkForKey = (obj, keyName) => obj.hasOwnProperty(keyName);
     
     // Update method for handling click and search
     updateContent = ()  => {
-        this.props.updateColor();
-        console.log("return", this.state.api_module.default())
-        this.state.api_module.default(this.state.filter)
-        .then(data => this.setState({ quote: data[0], author: data[1]}));
+        let snailDelay = 5000;
+
+        // Should not update if timeout is active
+        if (this.state.rateLimiterCount < 4) {
+            this.props.updateColor();
+
+            this.state.api_module.default(this.state.filter)
+            .then(data => {
+                // If error is thrown in the api_function
+                if (data instanceof Error) {
+                    if (data.message == 429) {
+                        this.setState({ rateLimit: true })
+
+                        // Snail/warning will dissapear after delay
+                        setTimeout(() => {
+                            this.setState({ rateLimit: false })
+                        }, snailDelay)
+                    }
+                }
+
+                else this.setState({ quote: data[0], author: data[1]});
+            })
+        }
+
+        // Timeout to prevent to frequently updating
+        let updateTimeOutDelay = 5000;
+        
+        // setTimeout(() => {
+        //     this.setState({ rateLimiterCount: 0 })
+        // }, updateTimeOutDelay)
+
+        // this.setState(prevState => ({ rateLimiterCount: prevState.rateLimiterCount + 1 }));
+        // console.log("count", this.state.rateLimiterCount)
     }
 
     // Method to update filter, likely used by a child component with search functionality
@@ -103,6 +167,13 @@ class QuotePage extends Component {
         padding: 30px;
     `
 
+    WarningWrapper = styled.div`
+        position: absolute;
+        width: 300px;
+        bottom: 0;
+        right: 0;
+    `
+
     render() {
         return (
             <this.Container color={this.props.color}>
@@ -119,21 +190,28 @@ class QuotePage extends Component {
                         containerStyle={{width: "400px"}}
                         updateFilter={this.updateFilter}
                         resetFilter={this.resetFilter}
-                        placeHolder="James Bond..."
+                        placeHolder={this.state.search_placeholder}
                         // minCharactersBeforeUpdate="2"
                         numOfSuggestions={6}
-                        suggestionDelay="500"
+                        suggestionDelay="400"
                     />
                 }
                 
                 <QuoteBox 
-                    width= "600px"
+                    width="600px"
                     color={this.props.color}     
                     quote={this.state.quote}
                     author={this.state.author}
-                    search={true}
                     onClick={this.updateContent}
                 />
+                
+                {this.state.rateLimit &&
+                    <this.WarningWrapper>
+                        <RateLimiterWarning />
+                    </this.WarningWrapper>
+                }
+                
+                <ControlsHint />
             </this.Container>
         )
     }

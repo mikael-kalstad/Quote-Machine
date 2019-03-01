@@ -28,6 +28,7 @@ class SearchBar extends React.Component {
    }
 
    updateSuggestions() {
+        console.log("updating suggestions...")
         // Will only start giving suggestions after specified characters and if there is no timeout
         if (this.state.inputValue.length > this.props.minCharactersBeforeUpdate && !this.state.timeout) {
             this.setState({ timeout: true });
@@ -55,12 +56,31 @@ class SearchBar extends React.Component {
         if (e.key === 'Enter') { this.updateParent([this.state.inputValue]) }
     }   
 
+    onKeyDown(e) {
+        if (e.key === 'Backspace') console.log("deleting...");
+    } 
+
     onChange = (event) => {
         // Suggestions will not be updated before the setState is finished. 
         this.setState({ 
             inputValue: event.target.value, 
             visibility: event.target.value === "" ? false : true 
-        }, () => { this.updateSuggestions() })
+        }, () => { 
+            console.log(this.state.inputValue)
+            this.updateSuggestions() })
+        
+        // Delay before message is shown
+        let delay = 2000;
+
+        setTimeout(() => {
+            // No results found message
+            let message = ["Message", "No results for " + this.state.inputValue];
+
+            if (Object.keys(this.state.suggestions).length === 0) {
+                this.setState({ suggestions: {message} })
+            }
+        }, delay)
+        
     }
 
     clearInput = () => {
@@ -83,6 +103,7 @@ class SearchBar extends React.Component {
                         placeholder={this.props.placeHolder}
                         onChange={this.onChange}
                         onKeyPress={this.inputSubmit}
+                        onKeyDown={this.onKeyDown}
                     />
 
                     {/* Button for searching or clearing input */}
@@ -102,7 +123,7 @@ class SearchBar extends React.Component {
                         id_ul="suggestions"
                         id_li="suggestion_li"
                         updateToSuggestion={this.updateParent}
-                        results={this.state.suggestions}
+                        suggestions={this.state.suggestions}
                     />
                 } 
             </div>

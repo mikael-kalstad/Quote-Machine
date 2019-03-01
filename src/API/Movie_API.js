@@ -22,9 +22,15 @@ const getRandomQuote = () => {
     headers: {
         "authorization": "Token token=1iVrE8HF2I6SHudxkWKJKQtt"
     }})
-    .then(res => res.json())
-    .then(data => updateMovieState(data))
-    .catch(err => console.log("error"))
+    .then(res => {
+        if (res.ok) return res.json();
+        else return Error(res.status);
+    })
+    .then(data => {
+        if (data instanceof Error) return data;
+        return updateMovieState(data)
+    })
+    .catch(err => console.log("error", err))
 }
 
 // Will get specific quotes based on the provided filter

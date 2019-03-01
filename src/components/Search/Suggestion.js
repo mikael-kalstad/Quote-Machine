@@ -20,7 +20,7 @@ function Suggestion(props) {
         cursor: "pointer",
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",
-        overflow: "hidden",
+        overflow: "hidden"
     }
 
     /*
@@ -28,21 +28,33 @@ function Suggestion(props) {
     but the first value must be the value and the second must be the typename.
 
     SYNTAX: 
-        arr[0] = value, e.g. James Bond
-        arr[1] = typename, e.g Actor
+        arr[0] = typename, e.g Actor
+        arr[1] = value, e.g. James Bond
+        
     */
 
     let arr = [];
-    for (let i in props.results) {
+    // console.log(props.suggestions[0][0]);
+    // if (props.suggestions[0][0] === "Message") console.log("message!")
+    for (let i in props.suggestions) {
         arr.push(
             <li key={i} id={props.id_li}>
-                <button 
-                    style={buttonStyle} 
-                    onClick={() => props.updateToSuggestion(props.results[i])}
-                >
-                    {props.results[i][1]}
-                    <p style={categoryStyle}>{props.results[i][0]}</p>
-                </button>
+
+                {/* Check typename is blank, then it is a system message, should not be clickable */}
+                {props.suggestions[i][0] === "Message" ? 
+                    <button style={{...buttonStyle, cursor: "default"}}>
+                        {props.suggestions[i][1]}
+                        <p style={categoryStyle}>{props.suggestions[i][0]}</p>
+                    </button>
+                    :
+                    <button 
+                        style={buttonStyle} 
+                        onClick={() => props.updateToSuggestion(props.suggestions[i])}
+                    >
+                        {props.suggestions[i][1]}
+                        <p style={categoryStyle}>{props.suggestions[i][0]}</p>
+                    </button>
+                }
             </li>
         )
     }

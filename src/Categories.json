@@ -2,8 +2,10 @@
     {
         "name": "Movie",
         "logo": "logos/movie.png",
+        "hover_logos": ["logos/Movie/movieReel.png", "logos/Movie/popcorn.png", "logos/Movie/movieBoard.png"],
         "api_function": "API/Movie_API",
-        "search_algorithm": "Search Algorithm/Movie_searchAlg"
+        "search_algorithm": "Search Algorithm/Movie_searchAlg",
+        "search_placeholder": "James Bond"
     },
     {
         "name": "Breaking Bad",
@@ -16,6 +18,11 @@
         "api_function": "API/Code_API"
     },
     {
+        "name": "The Simpsons",
+        "logo": "logos/theSimpsons.png",
+        "api_function": "API/TheSimpsons_API"
+    },
+    {
         "name": "Ron Swanson",
         "logo": "logos/swanson.png",
         "api_function": "API/RonSwanson_API"
@@ -24,6 +31,7 @@
         "name": "Inspiration",
         "logo": "logos/creativity.png",
         "api_function": "API/Inspiration_API",
-        "search_algorithm": "Search Algorithm/Inspiration_searchAlg"
+        "search_algorithm": "Search Algorithm/Inspiration_searchAlg",
+        "search_placeholder": "Albert einstein"
     }
 ]

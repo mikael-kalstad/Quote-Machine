@@ -1,6 +1,6 @@
 import React from 'react';
 import CategoriesSlider from '../CategoriesSlider';
-// import TextAnimation from '../TextAnimation';
+import RateLimiterWarning from '../RateLimiterWarning';
 
 import Anime from 'react-anime';
 import styled from 'styled-components';
@@ -105,7 +105,7 @@ function StartMenu(props) {
                 opacity= {[0, 1]}
                 translateY= {[400, 0]}
             >
-                <CategoryText>Categor{props.categoryData.length >= 1 ? 'ies' : 'y'}</CategoryText>
+                <CategoryText>Categor{props.categoryData.length > 1 ? 'ies' : 'y'}</CategoryText>
             </Anime>
             
             <CategoriesSlider

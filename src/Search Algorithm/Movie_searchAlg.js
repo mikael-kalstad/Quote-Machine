@@ -1,5 +1,6 @@
 // Fetch movie data with the "multiple" API call 
 export default (input, numOfSuggestions) => {
+    console.log("alg", input);
     return fetch('http://movie-quotes-app.herokuapp.com/api/v1/quotes?multiple='+input, {
     headers: {
         "authorization": "Token token=1iVrE8HF2I6SHudxkWKJKQtt"

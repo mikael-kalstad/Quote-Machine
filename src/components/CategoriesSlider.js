@@ -9,34 +9,32 @@ function CategoriesSlider(props) {
 
     const checkForKey = (obj, keyName) => {
         if (obj.hasOwnProperty(keyName)) return true;
-        console.log("Error in category data, unknown keyname in file \"Categories.json\"");
+        console.log("Error in category data, unknown keyname \"" + keyName + "\" in file \"Categories.json\"");
         return false;
     }
 
     for (let i = 0; i < data.length; i++) {
         // Requires that name, logo and api-function are defined, otherwise it will not be rendered.
-        // Search functionality is optional.
+        // Search functionality and hover logos are optional.
         if (!checkForKey(data[i], "name") 
             || !checkForKey(data[i], "logo") 
             || !checkForKey(data[i], "api_function")) continue;
 
+        let hover_logos = [];
+        if (checkForKey(data[i], "hover_logos")) hover_logos=data[i]["hover_logos"];
+        console.log("logos", hover_logos)
         categoryBoxes.push(
             <CategoryBox
                 key={i}
                 name={props.categoryData[i]["name"]}
                 logo={props.categoryData[i]["logo"]}
+                hoverLogos={hover_logos}
                 onClick={props.onClick}
 
                 // Last box needs right margin
                 margin={ i === props.categoryData.length-1 ? "0 30px 0 0" : 0}
                
-                // animeProps = {{
-                //     easing: 'linear',
-                //     delay: i * 100 + 300,
-                //     duration: 50,
-                //     opacity: [0, 1],
-                //     translateX: [200, 0],
-                // }}
+               
             ></CategoryBox>
         )
     }
@@ -49,28 +47,30 @@ function CategoriesSlider(props) {
         grid-auto-flow: column;
     `;
 
+    let scroll_borderRadius = '16px';
+    let scroll_color = '#cecece';
+
     const Slider = styled.div`
         max-width: 100%;
         padding: 30px;
         -webkit-overflow-scrolling: touch;
-        overflow-x: auto;
-        /* transform: rotate(-90deg); */
-        
+        overflow-x: auto;        
        
         ::-webkit-scrollbar {
-            background-color:#03998D;
-            width:10px; 
+            height: 10px; 
         }
 
+        /* The empty space “below” the progress bar. */
         ::-webkit-scrollbar-track {
-            background-color:#03998D;
+            border: 1px solid ${scroll_color};
+            border-radius: ${scroll_borderRadius};
             margin: 30px;
-            
         }
 
+        /*  The draggable scrolling element resizes depending on the size of the scrollable element. */
         ::-webkit-scrollbar-thumb {
-            background-color: #cecece;
-            border-radius:16px;
+            background-color: ${scroll_color};
+            border-radius: ${scroll_borderRadius};
         }
     `;
     

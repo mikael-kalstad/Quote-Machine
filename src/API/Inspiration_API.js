@@ -3,7 +3,7 @@ import data from './Inspiration_data.json';
 export default (filter) => {
    let randomNum = Math.round(Math.random()*(data.length-1));
    
-   if (filter != undefined && filter.length === 2) {
+   if (filter !== undefined && filter.length === 2) {
       if (filter[0] === "quote") return new Promise(resolve => resolve([filter[0], filter[1]]));
 
       for (let i = 0; i < data.length; i++) {
