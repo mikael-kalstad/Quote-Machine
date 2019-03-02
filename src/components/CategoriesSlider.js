@@ -9,7 +9,7 @@ function CategoriesSlider(props) {
 
     const checkForKey = (obj, keyName) => {
         if (obj.hasOwnProperty(keyName)) return true;
-        console.log("Error in category data, unknown keyname \"" + keyName + "\" in file \"Categories.json\"");
+        // console.log("Error in category data, unknown keyname \"" + keyName + "\" in file \"Categories.json\"");
         return false;
     }
 
@@ -22,7 +22,7 @@ function CategoriesSlider(props) {
 
         let hover_logos = [];
         if (checkForKey(data[i], "hover_logos")) hover_logos=data[i]["hover_logos"];
-        console.log("logos", hover_logos)
+        
         categoryBoxes.push(
             <CategoryBox
                 key={i}
