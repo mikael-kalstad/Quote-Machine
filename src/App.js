@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import styled, {createGlobalStyle} from 'styled-components';
-
+import './App.css';
+import styled from 'styled-components';
 import StartMenu from './components/Pages/StartMenu';
 import QuotePage from './components/Pages/QuotePage';
 import CategoryData from './Categories.json';
@@ -11,10 +11,20 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faQuoteLeft, faArrowAltCircleLeft, faSearch, faTimes, faSpinner } from '@fortawesome/free-solid-svg-icons'
 library.add(fab, faQuoteLeft, faArrowAltCircleLeft, faSearch, faTimes, faSpinner);
 
-// const GlobalStyles = createGlobalStyle`
-//   body {
-//     @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
-//     font-family: 'Abril Fatface', sans-serif;
+// const Container = styled.div`
+//   ::-webkit-scrollbar {
+//     width: 10px; 
+//     background-color: #F5F5F5;
+//   }
+
+//   /* The empty space “below” the progress bar. */
+//   ::-webkit-scrollbar-track {
+//     display: none;
+//   }
+
+//   /*  The draggable scrolling element resizes depending on the size of the scrollable element. */
+//   ::-webkit-scrollbar-thumb {
+//     background-color: #c0bebe;
 //   }
 // `
 
@@ -31,21 +41,16 @@ class App extends Component {
 
   // Will find appropriate HSL color
   randomHSL = () => {
-    let random = (min, max) => Math.round(min + Math.random()*(max-min));
-
     // Will only pick colors that have good contrast with white
-    let hue = random(0, 360);
-    let saturation = random(30, 100);
-    let lightness = random(70, 80);
+    let hue = this.random(0, 360);
+    let saturation = this.random(30, 100);
+    let lightness = this.random(70, 80);
 
     return 'hsl('+hue+", "+saturation+"%, "+lightness+"%)";
   }
-
+  
+  random = (min, max) => Math.round(min + Math.random()*(max-min));
   updateColor = () => this.setState({ color: this.randomHSL() });
-
-  // goBack = () => this.setState({ categoryName: "" });
-
-  checkForKey = (obj, keyName) => obj.hasOwnProperty(keyName);
 
   render() {    
     return (

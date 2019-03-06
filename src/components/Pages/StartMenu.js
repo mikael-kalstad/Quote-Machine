@@ -23,7 +23,8 @@ const Title = styled.h1`
     color: #EEDF08;
     padding-left: 45px;
     margin: 0;
-    font-family: 'Abril Fatface';
+    font-family: 'Abril Fatface', sans-serif;
+    font-weight: 500;
     font-size: 130px;
    
     @media screen and (max-width: 1100px) {
@@ -33,24 +34,30 @@ const Title = styled.h1`
     @media screen and (max-width: 850px) {
         text-align: center;
         padding-left: 0;
-    }
+    }    
 `
 
 const QuoteText = styled.p`
     color: whitesmoke;
     padding: 40px;
-    font-family: Helvetica;
-    font-size: 40px;
-    align-self: center;
+    /* font-family: 'Neuton', sans-serif; */
+    font-size: 80px;
+    font-weight: 100;
+    word-spacing: 4px;
+    
     
     @media screen and (max-width: 1100px) {
-        font-size: 35px;
+        font-size: 60px;
     }
 
     @media screen and (max-width: 850px) {
         /* padding: 0 40px 0 0; */
         text-align: center;
         /* margin: auto; */
+    }
+
+    @media screen and (max-width: 500px) {
+        font-size: 50px;
     }
 `
 
@@ -68,10 +75,18 @@ const CategoryText = styled.p`
     }
 `
 
-    const Image = styled.img`
-        width: 80px;
-        padding-right: 20px;
-    `
+const QuoteSVG = styled.img`
+    max-width: 1000px;
+    width: 70%;
+    margin-right: 90px;
+    align-self: center;
+    content: url('logos/Start Menu/quoteTounge.svg');
+
+    @media screen and (max-width: 1100px) {
+        content: url('logos/Start Menu/quoteToungeSmall.svg');
+        margin: auto;
+    }
+`
 
 function StartMenu(props) {
     let titleDuration = 400;
@@ -95,7 +110,7 @@ function StartMenu(props) {
                 opacity= {[0, 1]}
                 translateY= {[100, 0]}
             > 
-                <QuoteText><Image src='/logos/quotes.png'></Image>A quote is just a tattoo on the tongue</QuoteText>
+                <QuoteSVG></QuoteSVG>
             </Anime>
 
             <Anime

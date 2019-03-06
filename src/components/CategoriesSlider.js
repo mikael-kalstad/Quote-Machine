@@ -62,6 +62,7 @@ function CategoriesSlider(props) {
 
         /* The empty space “below” the progress bar. */
         ::-webkit-scrollbar-track {
+            background-color: #F5F5F5;
             border: 1px solid ${scroll_color};
             border-radius: ${scroll_borderRadius};
             margin: 30px;

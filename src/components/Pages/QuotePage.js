@@ -155,6 +155,8 @@ class QuotePage extends Component {
     `
 
     Title = styled.h1`
+        font-family: Helvetica, sans-serif;
+        font-weight: 100;
         text-align: center;
         color: white;
         font-size: 50px;

@@ -19,6 +19,7 @@ function CategoryBox(props) {
         height: ${props.height ? props.height : "200px"}; */
         width: 100%;
         height: 70%;
+        padding: 10px;
         background: ${props.backgroundColor ? props.backgroundColor : "#03897E"};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius: 10px;
@@ -60,8 +61,9 @@ function CategoryBox(props) {
     `;
 
     const Text = styled.p`
-        font-family: sans-serif;
-        font-size: ${props.fontSize ? props.fontSize: "25px"};
+        /* font-family: ; */
+        font-weight: 200;
+        font-size: ${props.fontSize ? props.fontSize: "27px"};
         color: ${props.color ? props.color: "#DEDDDD"};
     `;
 
