@@ -2,6 +2,7 @@
 >
 > -John F. Woods, 1991
 
+(https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
 # What I have learned
 
