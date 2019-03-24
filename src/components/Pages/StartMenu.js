@@ -37,29 +37,29 @@ const Title = styled.h1`
     }    
 `
 
-const QuoteText = styled.p`
-    color: whitesmoke;
-    padding: 40px;
-    /* font-family: 'Neuton', sans-serif; */
-    font-size: 80px;
-    font-weight: 100;
-    word-spacing: 4px;
+// const QuoteText = styled.p`
+//     color: whitesmoke;
+//     padding: 40px;
+//     /* font-family: 'Neuton', sans-serif; */
+//     font-size: 80px;
+//     font-weight: 100;
+//     word-spacing: 4px;
     
     
-    @media screen and (max-width: 1100px) {
-        font-size: 60px;
-    }
+//     @media screen and (max-width: 1100px) {
+//         font-size: 60px;
+//     }
 
-    @media screen and (max-width: 850px) {
-        /* padding: 0 40px 0 0; */
-        text-align: center;
-        /* margin: auto; */
-    }
+//     @media screen and (max-width: 850px) {
+//         /* padding: 0 40px 0 0; */
+//         text-align: center;
+//         /* margin: auto; */
+//     }
 
-    @media screen and (max-width: 500px) {
-        font-size: 50px;
-    }
-`
+//     @media screen and (max-width: 500px) {
+//         font-size: 50px;
+//     }
+// `
 
 const CategoryText = styled.p`
     color: #DEDEDC;

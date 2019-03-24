@@ -18,7 +18,6 @@ const getSuggestions = (data, input, numOfSuggestions) => {
     }
 
     for (let i = 0; i < data.length; i++) {
-        // console.log(hasContent(input, "James"))
         if (hasContent(input, data[i]["author"])) addSuggestion("Author", data[i]["author"]);
         if (checkNumOfKeys(suggestions, numOfSuggestions)) return suggestions;
         

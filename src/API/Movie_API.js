@@ -10,7 +10,7 @@
     
     return [
         data[num]["content"],
-        data[num]["actor"]["name"] + ", " + data[num]["movie"]["title"]
+        data[num]["actor"]["name"] + ", " + data[num]["movie"]["title"], data.length
     ]
 }
 

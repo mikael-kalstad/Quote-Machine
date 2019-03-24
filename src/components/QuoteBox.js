@@ -1,7 +1,6 @@
 import React, { Component }  from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Anime from 'react-anime';
 
 class QuoteBox extends Component {
     constructor(props) {
@@ -42,8 +41,17 @@ class QuoteBox extends Component {
             " . . author "
             " twitter tumblr newQuote ";
 
-            @media screen and (max-width: 850px) {
+            @media screen and (max-width: 650px) {
                 width: 100%;
+
+                grid-template-rows: auto 50px 45px auto;
+                grid-template-columns: 50px 50px auto;
+
+                grid-template-areas: 
+                " quote quote quote"
+                " . . author "
+                " twitter tumblr . "
+                "newQuote newQuote newQuote";
             }
         `
 
@@ -51,6 +59,10 @@ class QuoteBox extends Component {
             grid-area: quote;
             font-size: 28px;
             /* transition: opacity 1.5s ease-in-out; */
+            
+            @media screen and (max-width: 650px) {
+                font-size: 22px;
+            }
         `
 
         const QuoteSymbol = styled.span`
@@ -88,14 +100,20 @@ class QuoteBox extends Component {
             border-style: none;
             background-color: ${this.props.backgroundColor};
             cursor: pointer;
+
+            @media screen and (max-width: 650px) {
+                width: 240px;
+                height: 60px;
+                font-size: 20px;
+            }
         `
 
         let twitterLink="https://www.twitter.com/intent/tweet?text=Check out this quote: \"" + this.props.quote + "\", " + this.props.author;
         
-        let contentStyle = {
-            opacity: this.state.opacity,
-            transition: "opacity 0.38s ease"
-        }
+        // let contentStyle = {
+        //     opacity: this.state.opacity,
+        //     transition: "opacity 0.38s ease"
+        // }
 
         return (
             <Container>

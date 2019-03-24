@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import styled from 'styled-components';
 import StartMenu from './components/Pages/StartMenu';
 import QuotePage from './components/Pages/QuotePage';
 import CategoryData from './Categories.json';

@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SearchBar from '../Search/SearchBar';
 import RateLimiterWarning from '../RateLimiterWarning';
 import ControlsHint from '../ControlsHint';
-import Anime from 'react-anime';
 
 class QuotePage extends Component {
     constructor(props) {
@@ -18,41 +17,41 @@ class QuotePage extends Component {
             api_module: null,
             search_module: null,
             search_placeholder: "Search for...",
-            updateTimeOut: false,
-            rateLimiterCount: 0,
-            rateLimit: false
+            rateLimit: false,
+            controlsHint: false,
+            numOfQuotesFound: -1,
         }
     }
 
     componentDidMount() {
         // Find where the modules are located, path-data stored in props.categoryData
         // Syntax: [API_MODULE, SEARCH_MODULE (optional), Search_placeholder (optional)]
-        let filterData = this.getCategoryData();
+        let categoryDataFiltered = this.getCategoryData();
         
         // Error msg if api_module is not defined
-        if (filterData.length === 0) {
-            console.log("Error, api_module must be defined in categorydata. Check Categories.json if api_module is defined.");
+        if (categoryDataFiltered.length === 0) {
+            console.log("Error, api_module must be defined in categorydata. Check if api_module in Categories.json is defined.");
         }
 
         // Api-module
-        if (filterData.length >= 1) {
-            import('../../' + filterData[0])
+        if (categoryDataFiltered.length >= 1) {
+            import('../../' + categoryDataFiltered[0])
             .then(module => {
                 this.setState({ api_module: module }, () => this.updateContent());
             })
         }
 
         // Search-module
-        if (filterData.length >= 2) {
-            import('../../' + filterData[1])
+        if (categoryDataFiltered.length >= 2) {
+            import('../../' + categoryDataFiltered[1])
             .then(module => {
                 this.setState({ search_module: module })
             })
         }
 
         // Search-placeholder
-        if (filterData.length >= 3) {
-            this.setState({ search_placeholder: filterData[2] })
+        if (categoryDataFiltered.length >= 3) {
+            this.setState({ search_placeholder: categoryDataFiltered[2] })
         }
 
         // Adding key listener for Enter and Space, will update quote
@@ -68,67 +67,71 @@ class QuotePage extends Component {
 
         // After key is up, it can update again if key is pressed
         document.addEventListener("keyup", (e) => down = false);
+
+
+        // Control hints 
+        let hintShowDelay = 10000;
+        let hintHiddenDelay = 6000;
+    
+        setTimeout(() => {
+            this.setState({ controlsHint: true });
+        }, hintShowDelay) 
+
+        setTimeout(() => {
+            this.setState({ controlsHint: false })
+        }, hintHiddenDelay + hintShowDelay)
+
     }
 
     getCategoryData = () => {
-        let filterData = [];
+        let categoryDataFiltered = [];
         let data = this.props.categoryData;
         const  checkForKey = (obj, keyName) => obj.hasOwnProperty(keyName);
 
         for (let i = 0; i < data.length; i++) {
             if (checkForKey(data[i], "name") && data[i]["name"] === this.props.categoryName) {
-                filterData.push(data[i]["api_function"]);
+                categoryDataFiltered.push(data[i]["api_function"]);
                 
                 if (checkForKey(data[i], "search_algorithm")) {
-                    filterData.push(data[i]["search_algorithm"]);
+                    categoryDataFiltered.push(data[i]["search_algorithm"]);
 
                     if (checkForKey(data[i], "search_placeholder")) {
-                        filterData.push(data[i]["search_placeholder"]);
+                        categoryDataFiltered.push(data[i]["search_placeholder"]);
                     }
                 }
             }
         }
-        return filterData;
+        return categoryDataFiltered;
     }
     
     // Update method for handling click and search
     updateContent = ()  => {
         let snailDelay = 5000;
 
-        // Should not update if timeout is active
-        if (this.state.rateLimiterCount < 4) {
+        // Should not update if ratelimiter timeout is active
+        if (!this.state.rateLimit) {
             this.props.updateColor();
 
+            // Fetch data from api_module
             this.state.api_module.default(this.state.filter)
             .then(data => {
-                // If error is thrown in the api_function
-                if (data instanceof Error) {
-                    if (data.message == 429) {
-                        this.setState({ rateLimit: true })
+                // Check if error is thrown in the api_function
+                if (data instanceof Error && data.message == 429) {
+                    this.setState({ rateLimit: true })
 
-                        // Snail/warning will dissapear after delay
-                        setTimeout(() => {
-                            this.setState({ rateLimit: false })
-                        }, snailDelay)
-                    }
+                    // Snail/warning will dissapear after delay
+                    setTimeout(() => {
+                        this.setState({ rateLimit: false })
+                    }, snailDelay)
                 }
-
-                else this.setState({ quote: data[0], author: data[1]});
+                
+                // Update quote with data received
+                else this.setState({ quote: data[0], author: data[1], numOfQuotesFound: data[2] });
             })
         }
-
-        // Timeout to prevent to frequently updating
-        let updateTimeOutDelay = 5000;
-        
-        // setTimeout(() => {
-        //     this.setState({ rateLimiterCount: 0 })
-        // }, updateTimeOutDelay)
-
-        // this.setState(prevState => ({ rateLimiterCount: prevState.rateLimiterCount + 1 }));
-        // console.log("count", this.state.rateLimiterCount)
     }
 
-    // Method to update filter, likely used by a child component with search functionality
+    // Method to update filter, can be used by a child component with search functionality
     updateFilter = (arr) => {
         if (arr === undefined || arr.length === 0) return false;
         
@@ -138,20 +141,30 @@ class QuotePage extends Component {
             this.resetFilter();
             this.props.updateColor();
         } else {
-            this.setState({ filter: arr }, () => {
-                this.updateContent(); // Update  with the filter applied, after state is updated
-            })
+            // Update  with the filter applied, after state is updated
+            this.setState({ filter: arr }, () => this.updateContent());
         }   
     }
 
     resetFilter = () => this.setState({ filter: [] })
+
+    // Check for touch device
+    isTouchDevice = () => 'ontouchstart' in document.documentElement;
     
     Container = styled.div`
         height: 100vh;
         background-color: ${props => props.color};
         transition: all 1s linear;
         display: grid;
-        grid-template-rows: ${search => this.state.search_module ? "auto 60px 1fr" : "auto 1fr"};
+        grid-template-rows: ${search => {
+            if (this.state.search_module && this.state.filter.length > 0) {
+                return "auto 60px 20px 1fr"
+            } else if (this.state.search_module) {
+                return "auto 60px 1fr"
+            } else {
+                return "auto 1fr"
+            }
+        }};
     `
 
     Title = styled.h1`
@@ -161,6 +174,12 @@ class QuotePage extends Component {
         color: white;
         font-size: 50px;
     `
+    ResultText = styled.p`
+        font-size: 20px;
+        text-align: center;
+        color: white;
+    `
+
     Back = styled.div`
         cursor: pointer;
         color: white;
@@ -198,6 +217,10 @@ class QuotePage extends Component {
                         suggestionDelay="400"
                     />
                 }
+
+                {this.state.filter.length > 0 && 
+                    <this.ResultText>Number of results found: {this.state.numOfQuotesFound}</this.ResultText>
+                }
                 
                 <QuoteBox 
                     width="600px"
@@ -207,13 +230,19 @@ class QuotePage extends Component {
                     onClick={this.updateContent}
                 />
                 
-                {this.state.rateLimit &&
+                {/* {this.state.rateLimit && */}
                     <this.WarningWrapper>
                         <RateLimiterWarning />
                     </this.WarningWrapper>
+                {/* } */}
+                
+                {/* Only render controls hint if user is not on touch device 
+                !this.isTouchDevice() && this.state.controlsHint &&
+                */}
+                {!this.isTouchDevice() && 
+                    <ControlsHint />
                 }
                 
-                <ControlsHint />
             </this.Container>
         )
     }

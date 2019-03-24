@@ -1,10 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-let containerHeight = '100px';
-
 const Container = styled.div`
     text-align: center;
+    display: absolute;
+    transition: transform 250ms ease-in-out;
+    animation: hint 400ms 2 ease-in-out;
+
+    @keyframes hint {
+        50% {transform: translateY(-50px)}
+        100% {transform: translateY(0px)}
+    }
+
+    @media screen and (max-width: 700px)  {
+        display: none;
+    }
 `
 
 const SpaceKey = styled.span`
@@ -31,8 +41,6 @@ const Text = styled.span`
     line-height: 100px;
     font-weight: 600;
 `
-
-
 
 function ControlsHint() {
     return (
