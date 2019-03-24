@@ -2,7 +2,6 @@
 >
 > -John F. Woods, 1991
 
-(https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
 # What I have learned
 
@@ -30,6 +29,8 @@ This application is structured and developed to be able to easily add new conten
 - Path to search-algorithm (optional) 
 - Searchbar placeholder (optional)
 - Path to hover logos, in an array, MAX 5 images. (optional)
+
+![](/Gifs/hover.gif)
 
 See example below:
 
