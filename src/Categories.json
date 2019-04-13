@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Movie",
+        "logo": "logos/movie.png",
+        "hover_logos": ["logos/Movie/movieReel.png", "logos/Movie/popcorn.png", "logos/Movie/movieBoard.png"],
+        "api_function": "API/Movie_API",
+        "search_algorithm": "Search Algorithm/Movie_searchAlg",
+        "search_placeholder": "James Bond"
+    },
+    {
+        "name": "Breaking Bad",
+        "logo": "logos/breaking-bad.png",
+        "hover_logos": ["logos/Breaking Bad/drugs.png", "logos/Breaking Bad/gasMask.png", "logos/Breaking Bad/money.png"],
+        "api_function": "API/BreakingBad_API"
+    },
+    {
+        "name": "Code",
+        "logo": "logos/code.png",
+        "hover_logos": ["logos/Code/brackets.png", "logos/Code/face.png", "logos/Code/screen.png"],
+        "api_function": "API/Code_API"
+    },
+    {
+        "name": "The Simpsons",
+        "logo": "logos/theSimpsons.png",
+        "hover_logos": ["logos/The Simpsons/bowling.png", "logos/The Simpsons/donut.png", "logos/The Simpsons/beer.png"],
+        "api_function": "API/TheSimpsons_API"
+    },
+    {
+        "name": "Ron Swanson",
+        "logo": "logos/swanson.png",
+        "hover_logos": ["logos/Ron Swanson/mustache.png"],
+        "api_function": "API/RonSwanson_API"
+    },
+    {
+        "name": "Inspiration",
+        "logo": "logos/creativity.png",
+        "hover_logos": ["logos/Inspiration/paint.png", "logos/Inspiration/sun.png", "logos/Inspiration/brain.png"],
+        "api_function": "API/Inspiration_API",
+        "search_algorithm": "Search Algorithm/Inspiration_searchAlg",
+        "search_placeholder": "Albert einstein"
+    }
+]

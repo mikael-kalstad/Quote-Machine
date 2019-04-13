@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import QuoteBox from '../QuoteBox/QuoteBox';
-import Icon from '../Icon';
-import SearchBar from '../SearchBar/SearchBar';
-import Anime from 'react-anime';
+import styled from 'styled-components';
+
+import QuoteBox from '../QuoteBox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import SearchBar from '../Search/SearchBar';
+import RateLimiterWarning from '../RateLimiterWarning';
+import ControlsHint from '../ControlsHint';
 
 class QuotePage extends Component {
     constructor(props) {
@@ -10,143 +13,237 @@ class QuotePage extends Component {
         this.state = {
             quote: "",
             author: "",
-            isLoading: false,
-            movieFilter: []
+            filter: [],
+            api_module: null,
+            search_module: null,
+            search_placeholder: "Search for...",
+            rateLimit: false,
+            controlsHint: false,
+            numOfQuotesFound: -1,
         }
-        // Initializer, get quote
-        this.handleClick();
     }
 
-    // Update method for button and search
-    handleClick = ()  => {
-        // Random delay to simulate differing API respond times    
-        let delay = Math.random() * (600);
-        this.setState({ isLoading: true });
+    componentDidMount() {
+        // Find where the modules are located, path-data stored in props.categoryData
+        // Syntax: [API_MODULE, SEARCH_MODULE (optional), Search_placeholder (optional)]
+        let categoryDataFiltered = this.getCategoryData();
+        
+        // Error msg if api_module is not defined
+        if (categoryDataFiltered.length === 0) {
+            console.log("Error, api_module must be defined in categorydata. Check if api_module in Categories.json is defined.");
+        }
+
+        // Api-module
+        if (categoryDataFiltered.length >= 1) {
+            import('../../' + categoryDataFiltered[0])
+            .then(module => {
+                this.setState({ api_module: module }, () => this.updateContent());
+            })
+        }
+
+        // Search-module
+        if (categoryDataFiltered.length >= 2) {
+            import('../../' + categoryDataFiltered[1])
+            .then(module => {
+                this.setState({ search_module: module })
+            })
+        }
+
+        // Search-placeholder
+        if (categoryDataFiltered.length >= 3) {
+            this.setState({ search_placeholder: categoryDataFiltered[2] })
+        }
+
+        // Adding key listener for Enter and Space, will update quote
+        let down = false; // Prevent repeating updates!
+
+        document.addEventListener("keydown", (e) => {
+            // Note: key " " is spacebar
+            if (!down && (e.key === "Enter" || e.key === " ")) {
+                down = true;
+                this.updateContent();
+            }
+        }, false);
+
+        // After key is up, it can update again if key is pressed
+        document.addEventListener("keyup", (e) => down = false);
+
+
+        // Control hints 
+        let hintShowDelay = 10000;
+        let hintHiddenDelay = 6000;
     
         setTimeout(() => {
-          this.props.updateColor();
-        
-          if (this.props.quoteCategory === "Programming") {
-                this.getProgrammingQuote();
-          } else if (this.state.movieFilter.length > 0) {
-                this.getSpecificMovieQuote();
-          } else if (this.props.quoteCategory === "Movie") {
-                this.getMovieQuote();
-          }
-        }, delay);
-      }
+            this.setState({ controlsHint: true });
+        }, hintShowDelay) 
 
-    // Method that child will call to update moviefilter
-    updateFilter = (arr) => {
-        if (arr === undefined) return undefined;
-        if (arr[0] === "content") this.setState({ quote: arr[2], author: arr[3]+', '+arr[4] });
-        else {
-            // Always the last in the array that needs to be lowercase with - between words
-            arr[arr.length-1] = arr[arr.length-1].toLowerCase().trim().split(' ').join('-');
-            
-            this.setState({ movieFilter: arr });
-            this.handleClick(); // Update the quote with the moviefilter applied
+        setTimeout(() => {
+            this.setState({ controlsHint: false })
+        }, hintHiddenDelay + hintShowDelay)
+
+    }
+
+    getCategoryData = () => {
+        let categoryDataFiltered = [];
+        let data = this.props.categoryData;
+        const  checkForKey = (obj, keyName) => obj.hasOwnProperty(keyName);
+
+        for (let i = 0; i < data.length; i++) {
+            if (checkForKey(data[i], "name") && data[i]["name"] === this.props.categoryName) {
+                categoryDataFiltered.push(data[i]["api_function"]);
+                
+                if (checkForKey(data[i], "search_algorithm")) {
+                    categoryDataFiltered.push(data[i]["search_algorithm"]);
+
+                    if (checkForKey(data[i], "search_placeholder")) {
+                        categoryDataFiltered.push(data[i]["search_placeholder"]);
+                    }
+                }
+            }
+        }
+        return categoryDataFiltered;
+    }
+    
+    // Update method for handling click and search
+    updateContent = ()  => {
+        let snailDelay = 5000;
+
+        // Should not update if ratelimiter timeout is active
+        if (!this.state.rateLimit) {
+            this.props.updateColor();
+
+            // Fetch data from api_module
+            this.state.api_module.default(this.state.filter)
+            .then(data => {
+                // Check if error is thrown in the api_function
+                if (data instanceof Error && data.message == 429) {
+                    this.setState({ rateLimit: true })
+
+                    // Snail/warning will dissapear after delay
+                    setTimeout(() => {
+                        this.setState({ rateLimit: false })
+                    }, snailDelay)
+                }
+                
+                // Update quote with data received
+                else this.setState({ quote: data[0], author: data[1], numOfQuotesFound: data[2] });
+            })
         }
     }
 
-    resetFilter = () => this.setState({ movieFilter: [] })
-
-    // General method for updating movies state, used by several methods.
-    updateMovieState = (data) => {
-        if (data === undefined || data.length === 0) return false;
-        let num = data.length > 1 ? this.random(0, data.length-1) : 0;
-        console.log("num",num)
-        this.setState({
-            quote: data[num]["content"],
-            author: data[num]["actor"]["name"] + ", " + data[num]["movie"]["title"],
-            isLoading: false
-        })
-    }
-
-    random = (min, max) => Math.round(min + Math.random()*(max-min));
-
-    // Random programming quote
-    getProgrammingQuote = () => {
-        fetch('http://quotes.stormconsultancy.co.uk/random.json')
-        .then(res => res.json())
-        .then(data => {
-            this.setState({
-                quote: data.quote,
-                author: data.author,
-                isLoading: false
-            })
-        })
-        .catch(err => console.log("error"))
-    }
-
-    // Will pick random quotes
-    getMovieQuote = () => {
-        fetch('http://movie-quotes-app.herokuapp.com/api/v1/quotes?random=1', {
-        headers: {
-            "authorization": "Token token=1iVrE8HF2I6SHudxkWKJKQtt"
-        }})
-        .then(res => res.json())
-        .then(data => this.updateMovieState(data))
-        .catch(err => console.log("error"))
-    }
-
-    // Will get specific quotes based on moviefilter
-    getSpecificMovieQuote = () => {  
-        console.log("filter", this.state.movieFilter); 
+    // Method to update filter, can be used by a child component with search functionality
+    updateFilter = (arr) => {
+        if (arr == undefined || arr.length === 0) return false;
         
-        let filterLink = "http://movie-quotes-app.herokuapp.com/api/v1/quotes?";
-        this.state.movieFilter.length === 1 ? filterLink += "multiple="+this.state.movieFilter[0] :
-        filterLink += this.state.movieFilter[0]+"="+this.state.movieFilter[2];
-        
-        console.log("link", filterLink);  
-        fetch (filterLink, {
-        headers: {
-            "authorization": "Token token=1iVrE8HF2I6SHudxkWKJKQtt"
-        }})
-        .then(res => res.json())
-        .then(data => this.updateMovieState(data))
-        .catch(err => console.log("error"))
+        // If the filter is a quote, just render the quote directly
+        if (arr[0] === "Quote") {
+            this.setState({ quote: arr[1], author: arr[2] + ', ' + arr[3] });
+            this.resetFilter();
+            this.props.updateColor();
+        } else {
+            // Update  with the filter applied, after state is updated
+            this.setState({ filter: arr }, () => this.updateContent());
+        }   
     }
+
+    resetFilter = () => this.setState({ filter: [] })
+
+    // Check for touch device
+    isTouchDevice = () => 'ontouchstart' in document.documentElement;
+    
+    Container = styled.div`
+        height: 100vh;
+        background-color: ${props => props.color};
+        transition: all 1s linear;
+        display: grid;
+        grid-template-rows: ${search => {
+            if (this.state.search_module && this.state.filter.length > 0) {
+                return "auto 60px 20px 1fr"
+            } else if (this.state.search_module) {
+                return "auto 60px 1fr"
+            } else {
+                return "auto 1fr"
+            }
+        }};
+    `
+
+    Title = styled.h1`
+        font-family: Helvetica, sans-serif;
+        font-weight: 100;
+        text-align: center;
+        color: white;
+        font-size: 50px;
+    `
+    ResultText = styled.p`
+        font-size: 20px;
+        text-align: center;
+        color: white;
+    `
+
+    Back = styled.div`
+        cursor: pointer;
+        color: white;
+        font-size: 50px;
+        position: absolute;
+        padding: 30px;
+    `
+
+    WarningWrapper = styled.div`
+        position: absolute;
+        width: 300px;
+        bottom: 0;
+        right: 0;
+    `
 
     render() {
         return (
-            <div
-                style={{
-                    height: "100vh",
-                    display: "grid",
-                    gridTemplateRows: this.props.quoteCategory === "Movie" ? "auto 60px 1fr" : "auto 1fr",
-                }}
-            >
-                <h1 
-                    style={{textAlign: "center", color: "white", fontSize: "50px"}}
-                > {this.props.quoteCategory} Quotes</h1>
+            <this.Container color={this.props.color}>
+                <this.Title> {this.props.categoryName} Quotes</this.Title>
                 
-                <Icon 
-                    id="goBack"
-                    link=""
-                    classNameI="fas fa-chevron-circle-left"
-                    classNameA="icon-goBack"
-                />
+                <this.Back onClick={() => this.props.setCategoryName("")}>
+                    <FontAwesomeIcon icon="arrow-alt-circle-left" />
+                </this.Back>
 
-                {this.props.quoteCategory === "Movie"? 
-                <SearchBar 
-                    containerStyle={{width: "400px"}}
-                    updateFilter={this.updateFilter}
-                    resetFilter={this.resetFilter}
-                    placeHolder="James Bond..."
-                    // minCharactersBeforeUpdate="2"
-                    suggestionDelay="500"
-                /> : null}
+                {/* Searchbar will only render if search-module is defined */}
+                {this.state.search_module !== null && 
+                    <SearchBar 
+                        search_module={this.state.search_module}
+                        containerStyle={{width: "400px"}}
+                        updateFilter={this.updateFilter}
+                        resetFilter={this.resetFilter}
+                        placeHolder={this.state.search_placeholder}
+                        // minCharactersBeforeUpdate="2"
+                        numOfSuggestions={6}
+                        suggestionDelay="400"
+                    />
+                }
+
+                {this.state.filter.length > 0 && 
+                    <this.ResultText>Number of results found: {this.state.numOfQuotesFound}</this.ResultText>
+                }
                 
                 <QuoteBox 
-                    width= "600px"
+                    width="600px"
                     color={this.props.color}     
                     quote={this.state.quote}
                     author={this.state.author}
-                    onClick={this.handleClick}
-                    isLoading={this.state.isLoading}
+                    onClick={this.updateContent}
                 />
-            </div>
+                
+                {this.state.rateLimit &&
+                    <this.WarningWrapper>
+                        <RateLimiterWarning />
+                    </this.WarningWrapper>
+                }
+                
+                {/* Only render controls hint if user is not on touch device 
+                !this.isTouchDevice() && this.state.controlsHint &&
+                */}
+                {!this.isTouchDevice() && 
+                    <ControlsHint />
+                }
+                
+            </this.Container>
         )
     }
 }
