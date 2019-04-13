@@ -30,7 +30,7 @@ This application is structured and developed to be able to easily add new conten
 - Searchbar placeholder (optional)
 - Path to hover logos, in an array, MAX 5 images. (optional)
 
-![](/Gifs/hover.gif)
+!["Example of hover logos"](/Gifs/hover.gif)
 
 See example below:
 
@@ -54,7 +54,7 @@ The application expects the api function to return a promise. The value of the p
 ```javascript
 ["quote", "author"]
 // Example
-["", ""]
+["Bond. James Bond.", "James Bond"]
 ```
 
 The function will have a filter as a parameter, but this will only have a value if the search algorithm is implemented within the same category. If so, it is expected that the API will be able to find content with provided information. Learn more about what information is included in the filter below.
@@ -69,6 +69,8 @@ The `Searchbar` component will use the search algorithm if it is provided. Note 
 - Character
 - Movie
 - Quote
+
+!["Some searches in the movie category"](/Gifs/search.gif)
 
 The search algorithm must return an array of suggestions wrapped in an object.
 
@@ -130,5 +132,5 @@ Documentation about the API's I used for the quotes can be found in these links.
 
 **Ron Swanson**: https://github.com/jamesseanwright/ron-swanson-quotes#ron-swanson-quotes-api
 
-Note: this is just data, not an API
+Note: this is just static data that is imported into the application.
 **Inspiration**: https://gist.github.com/nasrulhazim/54b659e43b1035215cd0ba1d4577ee80

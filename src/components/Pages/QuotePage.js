@@ -133,7 +133,7 @@ class QuotePage extends Component {
 
     // Method to update filter, can be used by a child component with search functionality
     updateFilter = (arr) => {
-        if (arr === undefined || arr.length === 0) return false;
+        if (arr == undefined || arr.length === 0) return false;
         
         // If the filter is a quote, just render the quote directly
         if (arr[0] === "Quote") {
@@ -230,11 +230,11 @@ class QuotePage extends Component {
                     onClick={this.updateContent}
                 />
                 
-                {/* {this.state.rateLimit && */}
+                {this.state.rateLimit &&
                     <this.WarningWrapper>
                         <RateLimiterWarning />
                     </this.WarningWrapper>
-                {/* } */}
+                }
                 
                 {/* Only render controls hint if user is not on touch device 
                 !this.isTouchDevice() && this.state.controlsHint &&

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Anime from 'react-anime';
 
 let backgroundColor = '#F1F1F1';
 
@@ -9,20 +8,11 @@ const Container = styled.div`
     grid-template-areas: 
     "image"
     "message";
-
-    @media screen and (max-width: 1350px) {
-        
-        transform: translateY(-95px);
-        transform: scale(0.75);
-        grid-template-columns: 300px auto;
-
-        grid-template-areas: "message image";
-    }
 `
 const Text = styled.p`
     grid-area: 'message';
     color: white;
-    font-size: 15px;
+    font-size: 15px;   
 `
 
 // Container for snail img and msg dialog
