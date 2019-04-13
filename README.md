@@ -2,6 +2,7 @@
 >
 > -John F. Woods, 1991
 
+*This project was developed to learn react after taking a course on react.js. All pictures, API's and data used in this project is for testing purposes only.*
 
 # What I have learned
 
@@ -13,7 +14,6 @@
 - Handling JSON (access data with different formats)
 - Simple search Algorithm (with data from API)
 - Sketching UI (Used Lunacy) before coding the front end. I learned this the hard way; I did a total redesign of the project mid-way through.
-
 
 
 ## Structure
