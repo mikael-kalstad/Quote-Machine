@@ -2,7 +2,7 @@
 
 !["Easter egg"](/Gifs/tounge.gif)
 
-**Link to the website: https://mikael-kalstad.github.io/Quote-Machine/**
+**Link to the website: https://mikael-kalstad.github.io/Tattoo-on-the-tounge/**
 
 # What I have learned
 
