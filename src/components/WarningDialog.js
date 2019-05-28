@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+const Overlay = styled.div`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+`
+
 const Title = styled.p`
     margin: 0;
     font-size: 30px;
@@ -60,14 +68,14 @@ class WarningDialog extends Component {
     }
 
     render() {
-        const Container = styled.div`
+        const Dialog = styled.div`
             position: absolute;
             visibility:  ${this.props.show ? "show" : "hidden"};
-            margin: auto;
             left: 0;
             right: 0;
             margin-left: auto;
             margin-right: auto;
+            margin-top: 300px;
             width: 450px;
             height: 250px;;
             padding: 30px;
@@ -78,20 +86,35 @@ class WarningDialog extends Component {
             /* Layout */
             display: grid;
             grid-template-rows: 50px auto 50px;
+
+            animation: popup 200ms 1 ease;
+
+            @keyframes popup {
+                0% {
+                    opacity: 0;
+                    margin-top: 700px;
+                }
+                100% {
+                    opacity: 1;
+                    margin-top: 300px;
+                }
+            }
         `
 
-        return (
-            <Container>
-                <Title>{this.props.title}</Title>
-                <Text>{this.props.text}</Text>
-                <ButtonRow>
-                    <Cancel onClick={this.props.cancelAction}>{this.props.cancelMsg ? this.props.cancelMsg : "cancel"}</Cancel>
-                    <ActionBtn onClick={this.props.action}>{this.props.actionMsg ? this.props.actionMsg : "Yes"}</ActionBtn>
-                </ButtonRow>
-                <Exit onClick={this.props.cancelAction}>
-                    <FontAwesomeIcon icon="times"/>
-                </Exit>
-            </Container>
+        return ( 
+            <Overlay onClick={this.props.cancelAction}>       
+                <Dialog>
+                    <Title>{this.props.title}</Title>
+                    <Text>{this.props.text}</Text>
+                    <ButtonRow>
+                        <Cancel onClick={this.props.cancelAction}>{this.props.cancelMsg ? this.props.cancelMsg : "cancel"}</Cancel>
+                        <ActionBtn onClick={this.props.action}>{this.props.actionMsg ? this.props.actionMsg : "Yes"}</ActionBtn>
+                    </ButtonRow>
+                    <Exit onClick={this.props.cancelAction}>
+                        <FontAwesomeIcon icon="times"/>
+                    </Exit>
+                </Dialog>
+            </Overlay>
         )
     }
 }

@@ -109,7 +109,7 @@ class QuotePage extends Component {
     // Update method for handling click and search
     updateContent = ()  => {
         let snailDelay = 5000;
-        let warningDelay = 5000;
+        let warningDelay = 4000;
 
         if (!this.state.warningCountdown) {
             this.setState({ warningCountdown: true });
@@ -262,16 +262,16 @@ class QuotePage extends Component {
                 }
                 
                 {this.state.warning &&
-                     <WarningDialog
-                        title="Data warning"
-                        text="No data found, please try another category"
+                    <WarningDialog
+                        title="Warning"
+                        text="No quotes found, please try a different category"
                         actionMsg="Menu"
                         action={this.goToMenu}
                         cancelMsg="Close"
                         cancelAction={() => this.setState({ warning: false })}
                         show={this.state.warning}
-                     >
-                     </WarningDialog>
+                    >
+                    </WarningDialog>
                 }
             </this.Container>
         )

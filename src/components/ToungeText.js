@@ -34,7 +34,7 @@ class ToungeText extends Component {
 
     Logo = styled.img`
         position: absolute;
-        margin-left: 80px;
+        margin-left: 70px;
         max-height: 90px;
         transition: all 200ms ease;
         z-index: -1;
@@ -44,8 +44,7 @@ class ToungeText extends Component {
         }
 
         ${this.Wrapper}:active & {
-            margin-left: 125px;
-            /* transform: translateY(65px); */
+            margin-left: 110px;
         }
     `
 

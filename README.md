@@ -4,6 +4,8 @@
 
 *This project was developed to learn react after taking a course on react.js. All pictures, API's and data used in this project is for testing purposes only.*
 
+**Link to the website: https://mikael-kalstad.github.io/Quote-Machine/**
+
 # What I have learned
 
 - React (JSX, state, components, props, child-parent relationship)
@@ -61,7 +63,9 @@ The function will have a filter as a parameter, but this will only have a value 
 
 ### Search algorithm
 
-The `Searchbar` component will use the search algorithm if it is provided. Note this component will not render if this function is not declared in `Categories.json`. The algorithm will be provided with a `inputvalue` and `number of suggestions`, which limits the number of suggestions that the searchbar will provide at the time. There are 6 different types of content that can be used.
+The `Searchbar` component will use the search algorithm if it is provided. Note this component will not render if this function is not declared in `Categories.json`. The algorithm will be provided with a `inputvalue` and `number of suggestions`, which limits the number of suggestions that the searchbar will provide at the time. 
+
+Each result in the searchbar has some content and a type. Types is specified within each search algorithm. E.g in the movie category there are 6 different types of content that can be used.
 
 - Year
 - Category
@@ -116,7 +120,13 @@ import Anime from 'react-anime'
 Animeprops will take props the same way as anime.js does. This package provides a component that can be wrapped around other components for easily making animations. Documentation about anime.js can be found here: https://animejs.com/documentation/
 
 Other animation I added to make the start page more interactive
+
 !["Example of hover logos"](/Gifs/tounge.gif)
+
+## Error handling
+When fetching a new quote a timer is started, if the API takes longer than a set delay to respond, a popup dialog will show up. This is to prevent users being confused as to why there are no quotes showing in a specific category. The cause behind the quotes not showing could an API that is no longer running.
+
+!["Warning dialog"](/Gifs/dialog.gif)
 
 ## API's
 

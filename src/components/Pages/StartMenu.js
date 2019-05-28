@@ -106,13 +106,6 @@ function StartMenu(props) {
                 onClick={props.onClick}
             >   
             </CategoriesSlider>
-
-            <WarningDialog
-                title="Warning"
-                text="This is a warning dialog, please exit or progess will be lost"
-            >
-
-            </WarningDialog>
         </Wrapper>
     )
 }
