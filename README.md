@@ -1,8 +1,6 @@
-> ## Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
->
-> -John F. Woods, 1991
-
 *This project was developed to learn react after taking a course on react.js. All pictures, API's and data used in this project is for testing purposes only.*
+
+!["Easter egg"](/Gifs/tounge.gif)
 
 **Link to the website: https://mikael-kalstad.github.io/Quote-Machine/**
 
@@ -118,10 +116,6 @@ import Anime from 'react-anime'
 <Anime>
 ```
 Animeprops will take props the same way as anime.js does. This package provides a component that can be wrapped around other components for easily making animations. Documentation about anime.js can be found here: https://animejs.com/documentation/
-
-Other animation I added to make the start page more interactive
-
-!["Example of hover logos"](/Gifs/tounge.gif)
 
 ## Error handling
 When fetching a new quote a timer is started, if the API takes longer than a set delay to respond, a popup dialog will show up. This is to prevent users being confused as to why there are no quotes showing in a specific category. The cause behind the quotes not showing could an API that is no longer running.
