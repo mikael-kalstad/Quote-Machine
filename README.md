@@ -120,7 +120,7 @@ Animeprops will take props the same way as anime.js does. This package provides 
 ## Error handling
 When fetching a new quote a timer is started, if the API takes longer than a set delay to respond, a popup dialog will show up. This is to prevent users being confused as to why there are no quotes showing in a specific category. The cause behind the quotes not showing could an API that is no longer running.
 
-!["Warning dialog"](/Gifs/dialog.gif)
+!["Warning dialog"](/Gifs/dialog2.gif)
 
 ## API's
 
