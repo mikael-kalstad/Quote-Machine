@@ -1,6 +1,7 @@
 import React from 'react';
 import CategoriesSlider from '../CategoriesSlider';
 import ToungeText from '../ToungeText';
+import WarningDialog from '../WarningDialog';
 
 import Anime from 'react-anime';
 import styled from 'styled-components';
@@ -105,6 +106,13 @@ function StartMenu(props) {
                 onClick={props.onClick}
             >   
             </CategoriesSlider>
+
+            <WarningDialog
+                title="Warning"
+                text="This is a warning dialog, please exit or progess will be lost"
+            >
+
+            </WarningDialog>
         </Wrapper>
     )
 }

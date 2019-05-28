@@ -3,7 +3,10 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     text-align: center;
-    display: absolute;
+    position: absolute;
+    bottom: 10px;;
+    left: 0;
+    right: 0;
     transition: transform 250ms ease-in-out;
     animation: hint 400ms 2 ease-in-out;
 
@@ -33,7 +36,7 @@ const EnterKey = styled.img`
     width: 100px;
     position: relative;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(40%);
 `
 const Text = styled.span`
     font-size: 28px;
@@ -48,7 +51,7 @@ function ControlsHint() {
             <Text>Tip: Use</Text>
             <SpaceKey>Space</SpaceKey>
             <Text>or</Text>
-            <EnterKey src='/logos/enterKey.png'></EnterKey>
+            <EnterKey src='logos/enterKey.png'></EnterKey>
             <Text>to refresh to a new quote</Text>
         </Container>
     )

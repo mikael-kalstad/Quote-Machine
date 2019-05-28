@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import SearchBar from '../Search/SearchBar';
 import RateLimiterWarning from '../RateLimiterWarning';
 import ControlsHint from '../ControlsHint';
+import WarningDialog from '../WarningDialog';
 
 class QuotePage extends Component {
     constructor(props) {
@@ -19,7 +20,9 @@ class QuotePage extends Component {
             search_placeholder: "Search for...",
             rateLimit: false,
             controlsHint: false,
-            numOfQuotesFound: -1,
+            numOfQuotesFound: 0,
+            warning: false,
+            warningCountdown: false
         }
     }
 
@@ -80,7 +83,6 @@ class QuotePage extends Component {
         setTimeout(() => {
             this.setState({ controlsHint: false })
         }, hintHiddenDelay + hintShowDelay)
-
     }
 
     getCategoryData = () => {
@@ -107,6 +109,18 @@ class QuotePage extends Component {
     // Update method for handling click and search
     updateContent = ()  => {
         let snailDelay = 5000;
+        let warningDelay = 5000;
+
+        if (!this.state.warningCountdown) {
+            this.setState({ warningCountdown: true });
+
+            setTimeout(() => {
+                if (this.state.quote == "" || this.state.quote == null) 
+                    this.setState({ warning: true });
+
+                    this.setState({ warningCountdown: false });
+            }, warningDelay) 
+        }
 
         // Should not update if ratelimiter timeout is active
         if (!this.state.rateLimit) {
@@ -150,6 +164,8 @@ class QuotePage extends Component {
 
     // Check for touch device
     isTouchDevice = () => 'ontouchstart' in document.documentElement;
+
+    goToMenu = () => this.props.setCategoryName("");
     
     Container = styled.div`
         height: 100vh;
@@ -204,7 +220,7 @@ class QuotePage extends Component {
             <this.Container color={this.props.color}>
                 <this.Title> {this.props.categoryName} Quotes</this.Title>
                 
-                <this.Back onClick={() => this.props.setCategoryName("")}>
+                <this.Back onClick={this.goToMenu}>
                     <FontAwesomeIcon icon="arrow-alt-circle-left" />
                 </this.Back>
 
@@ -240,13 +256,23 @@ class QuotePage extends Component {
                     </this.WarningWrapper>
                 }
                 
-                {/* Only render controls hint if user is not on touch device 
-                !this.isTouchDevice() && this.state.controlsHint &&
-                */}
-                {!this.isTouchDevice() && 
+                {/* Only render controls hint if user is not on touch device*/}
+                {!this.isTouchDevice() && this.state.controlsHint &&
                     <ControlsHint />
                 }
                 
+                {this.state.warning &&
+                     <WarningDialog
+                        title="Data warning"
+                        text="No data found, please try another category"
+                        actionMsg="Menu"
+                        action={this.goToMenu}
+                        cancelMsg="Close"
+                        cancelAction={() => this.setState({ warning: false })}
+                        show={this.state.warning}
+                     >
+                     </WarningDialog>
+                }
             </this.Container>
         )
     }
