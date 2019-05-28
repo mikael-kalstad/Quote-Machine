@@ -1,12 +1,8 @@
-> ## Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.
->
-> -John F. Woods, 1991
+!["Easter egg"](/Gifs/tounge.gif)
 
 *This project was developed to learn react after taking a course on react.js. All pictures, API's and data used in this project is for testing purposes only.*
 
 **Link to the website: https://mikael-kalstad.github.io/Quote-Machine/**
-
-!["Easter egg"](/Gifs/tounge.gif)
 
 # What I have learned
 
