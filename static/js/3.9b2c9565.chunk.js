@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{44:function(n,t,o){"use strict";o.r(t),t.default=function(){return fetch("https://breaking-bad-quotes.herokuapp.com/v1/quotes").then(function(n){return n.json()}).then(function(n){return console.log("data",n),[n[0].quote,n[0].author]})}}}]);
+//# sourceMappingURL=3.9b2c9565.chunk.js.map

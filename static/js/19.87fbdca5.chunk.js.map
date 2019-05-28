@@ -1,0 +1,1 @@
+{"version":3,"sources":["fonts/journal.ttf"],"names":["module","exports","__webpack_require__","p"],"mappings":"6EAAAA,EAAAC,QAAiBC,EAAAC,EAAuB","file":"static/js/19.87fbdca5.chunk.js","sourcesContent":["module.exports = __webpack_public_path__ + \"static/media/journal.12c444d4.ttf\";"],"sourceRoot":""}
