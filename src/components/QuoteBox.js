@@ -124,7 +124,6 @@ class QuoteBox extends Component {
                     </QuoteSymbol>
                     {this.props.quote}
                 </Quote>
-                {/* <p style={contentStyle}>without styles component</p> */}
 
                 <Author>- {this.props.author}</Author>
     

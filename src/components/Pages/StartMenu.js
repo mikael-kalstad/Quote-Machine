@@ -1,5 +1,6 @@
 import React from 'react';
 import CategoriesSlider from '../CategoriesSlider';
+import ToungeText from '../ToungeText';
 
 import Anime from 'react-anime';
 import styled from 'styled-components';
@@ -10,7 +11,7 @@ const Wrapper = styled.div`
     min-height: 100vh;
     padding: 40px 0 40px 40px;
     display: grid;
-    grid-template-rows: 150px 1fr 100px auto 30px;
+    grid-template-rows: 150px 1fr 140px 270px 30px;
     align-items: end;
 
     @media screen and (max-width: 850px) {
@@ -36,32 +37,31 @@ const Title = styled.h1`
     }    
 `
 
+const QuoteText = styled.p`
+    /* max-width: 1000px; */
+    /* width: 70%; */
+    margin-right: 90px;
+    margin-left: 50px;
+    align-self: center;
+    font-size: 60px;
+    font-weight: 300;
+    text-shadow: 4px 4px 1px rgba(0,0,0,0.2);
+    color: white;
+`
+
 const CategoryText = styled.p`
-    color: #DEDEDC;
+    color: rgba(255, 255, 255, 0.9);
     padding-left: 55px;
     padding-bottom: 20px;
     margin: 0;
-    font-family: Helvetica;
     font-size: 60px;
-    font-weight: 100;
+    font-weight: 200;
 
     @media screen and (max-width: 1100px) {
         font-size: 50px;
     }
 `
 
-const QuoteSVG = styled.img`
-    max-width: 1000px;
-    width: 70%;
-    margin-right: 90px;
-    align-self: center;
-    content: url('logos/Start Menu/quoteTounge.svg');
-
-    @media screen and (max-width: 1100px) {
-        content: url('logos/Start Menu/quoteToungeSmall.svg');
-        margin: auto;
-    }
-`
 
 function StartMenu(props) {
     let titleDuration = 400;
@@ -85,7 +85,11 @@ function StartMenu(props) {
                 opacity= {[0, 1]}
                 translateY= {[100, 0]}
             > 
-                <QuoteSVG></QuoteSVG>
+                <QuoteText>A quote is just a tattoo on the <span>hello</span>
+                    <ToungeText></ToungeText>
+                </QuoteText>
+                
+                
             </Anime>
 
             <Anime

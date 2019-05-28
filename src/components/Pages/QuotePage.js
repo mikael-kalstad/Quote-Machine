@@ -133,7 +133,7 @@ class QuotePage extends Component {
 
     // Method to update filter, can be used by a child component with search functionality
     updateFilter = (arr) => {
-        if (arr == undefined || arr.length === 0) return false;
+        if (arr == 'undefined' || arr.length === 0) return false;
         
         // If the filter is a quote, just render the quote directly
         if (arr[0] === "Quote") {
@@ -168,11 +168,16 @@ class QuotePage extends Component {
     `
 
     Title = styled.h1`
-        font-family: Helvetica, sans-serif;
-        font-weight: 100;
+        font-weight: 600;
         text-align: center;
         color: white;
         font-size: 50px;
+        text-shadow: 4px 4px 1px rgba(0,0,0,0.2);
+
+        @media screen and (max-width: 700px) {
+            margin-top: 120px;
+        }
+    }
     `
     ResultText = styled.p`
         font-size: 20px;

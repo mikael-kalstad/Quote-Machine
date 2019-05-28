@@ -61,10 +61,9 @@ function CategoryBox(props) {
     `;
 
     const Text = styled.p`
-        /* font-family: ; */
         font-weight: 200;
         font-size: ${props.fontSize ? props.fontSize: "27px"};
-        color: ${props.color ? props.color: "#DEDDDD"};
+        color: ${props.color ? props.color: "white"};
     `;
 
     const ImageHover = styled.div`
