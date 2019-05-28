@@ -112,10 +112,11 @@ import Anime from 'react-anime'
 <Anime ...animeProps>
   <SomeComponent>
 <Anime>
-
 ```
 Animeprops will take props the same way as anime.js does. This package provides a component that can be wrapped around other components for easily making animations. Documentation about anime.js can be found here: https://animejs.com/documentation/
 
+Other animation I added to make the start page more interactive
+!["Example of hover logos"](/Gifs/tounge.gif)
 
 ## API's
 

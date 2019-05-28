@@ -38,9 +38,7 @@ const Title = styled.h1`
 `
 
 const QuoteText = styled.p`
-    /* max-width: 1000px; */
-    /* width: 70%; */
-    margin-right: 90px;
+    margin-right: 15px;
     margin-left: 50px;
     align-self: center;
     font-size: 60px;
@@ -85,7 +83,7 @@ function StartMenu(props) {
                 opacity= {[0, 1]}
                 translateY= {[100, 0]}
             > 
-                <QuoteText>A quote is just a tattoo on the <span>hello</span>
+                <QuoteText>A quote is just a tattoo on <span style={{marginRight: '13px'}}>the</span>
                     <ToungeText></ToungeText>
                 </QuoteText>
                 

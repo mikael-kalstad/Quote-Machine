@@ -177,7 +177,6 @@ class QuotePage extends Component {
         @media screen and (max-width: 700px) {
             margin-top: 120px;
         }
-    }
     `
     ResultText = styled.p`
         font-size: 20px;
