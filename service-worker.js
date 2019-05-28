@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Quote-Machine/precache-manifest.ec1b535efbaade5c62f889cade763c91.js"
+  "/Tattoo-on-the-tounge/precache-manifest.3e395bd0db909fb7bcce52a35e104565.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Quote-Machine/index.html", {
+workbox.routing.registerNavigationRoute("/Tattoo-on-the-tounge/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
