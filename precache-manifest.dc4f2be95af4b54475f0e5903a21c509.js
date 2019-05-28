@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "04d87443ffe448dd5d33",
+    "revision": "51182726fb755bc1ab68",
     "url": "/Quote-Machine/static/css/0.be1aa6c8.chunk.css"
   },
   {
-    "revision": "04d87443ffe448dd5d33",
-    "url": "/Quote-Machine/static/js/0.04d87443.chunk.js"
+    "revision": "51182726fb755bc1ab68",
+    "url": "/Quote-Machine/static/js/0.51182726.chunk.js"
   },
   {
-    "revision": "39d6c20940c41da15534",
-    "url": "/Quote-Machine/static/js/1.39d6c209.chunk.js"
+    "revision": "aef16b722fad32eb444d",
+    "url": "/Quote-Machine/static/js/1.aef16b72.chunk.js"
   },
   {
-    "revision": "587a30ca62caaf2cd11a",
-    "url": "/Quote-Machine/static/js/2.587a30ca.chunk.js"
+    "revision": "c7f6c3d63c55ae5b0147",
+    "url": "/Quote-Machine/static/js/2.c7f6c3d6.chunk.js"
   },
   {
     "revision": "9b2c9565492652c525d9",
@@ -48,52 +48,48 @@ self.__precacheManifest = [
     "url": "/Quote-Machine/static/js/10.cbdb998b.chunk.js"
   },
   {
-    "revision": "7c44bd363541b64d9942",
-    "url": "/Quote-Machine/static/js/11.7c44bd36.chunk.js"
+    "revision": "59c313a721f5ac8e8f65",
+    "url": "/Quote-Machine/static/js/11.59c313a7.chunk.js"
   },
   {
-    "revision": "685fa277773916cc63c7",
-    "url": "/Quote-Machine/static/js/12.685fa277.chunk.js"
-  },
-  {
-    "revision": "6d8669819f99e77e3957",
+    "revision": "d8b7d77202f3cc7e2d52",
     "url": "/Quote-Machine/static/css/main.9f578fc4.chunk.css"
   },
   {
-    "revision": "6d8669819f99e77e3957",
-    "url": "/Quote-Machine/static/js/main.6d866981.chunk.js"
+    "revision": "d8b7d77202f3cc7e2d52",
+    "url": "/Quote-Machine/static/js/main.d8b7d772.chunk.js"
   },
   {
-    "revision": "62906aa1a31be643f8c4",
-    "url": "/Quote-Machine/static/js/runtime~main.62906aa1.js"
+    "revision": "7f0dc48bad82bd7f3976",
+    "url": "/Quote-Machine/static/js/runtime~main.7f0dc48b.js"
   },
   {
-    "revision": "601bca952da8ffab7388",
-    "url": "/Quote-Machine/static/js/15.601bca95.chunk.js"
+    "revision": "d7508bf915ec049a24bc",
+    "url": "/Quote-Machine/static/js/14.d7508bf9.chunk.js"
   },
   {
-    "revision": "7549794e1195f2145e7e",
-    "url": "/Quote-Machine/static/css/16.be1aa6c8.chunk.css"
+    "revision": "cb432b4a9c44be0067a4",
+    "url": "/Quote-Machine/static/css/15.be1aa6c8.chunk.css"
   },
   {
-    "revision": "7549794e1195f2145e7e",
-    "url": "/Quote-Machine/static/js/16.7549794e.chunk.js"
+    "revision": "cb432b4a9c44be0067a4",
+    "url": "/Quote-Machine/static/js/15.cb432b4a.chunk.js"
   },
   {
-    "revision": "38293d2660821ded7320",
-    "url": "/Quote-Machine/static/js/17.38293d26.chunk.js"
+    "revision": "785f0d45bda9df1490ae",
+    "url": "/Quote-Machine/static/js/16.785f0d45.chunk.js"
   },
   {
-    "revision": "544a53390d53aebbf736",
-    "url": "/Quote-Machine/static/js/18.544a5339.chunk.js"
+    "revision": "a1ae9422cee5787412af",
+    "url": "/Quote-Machine/static/js/17.a1ae9422.chunk.js"
   },
   {
-    "revision": "87fbdca5f98764c735d7",
-    "url": "/Quote-Machine/static/js/19.87fbdca5.chunk.js"
+    "revision": "d570e3168b2f6daeae2b",
+    "url": "/Quote-Machine/static/js/18.d570e316.chunk.js"
   },
   {
-    "revision": "cd2b10ec57e148ffe952",
-    "url": "/Quote-Machine/static/js/20.cd2b10ec.chunk.js"
+    "revision": "0c0a1bccdbefb75d9867",
+    "url": "/Quote-Machine/static/js/19.0c0a1bcc.chunk.js"
   },
   {
     "revision": "9a8f78682490975765e5446bd78356db",
@@ -112,7 +108,7 @@ self.__precacheManifest = [
     "url": "/Quote-Machine/static/media/logo.5d5d9eef.svg"
   },
   {
-    "revision": "c9b94f4dc2adda932c2fa2e02acfce81",
+    "revision": "19e0693cda72e244e6e63b407087459a",
     "url": "/Quote-Machine/index.html"
   }
 ];
