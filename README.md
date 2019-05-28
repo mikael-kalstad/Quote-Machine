@@ -132,4 +132,5 @@ Documentation about the API's I used for the quotes can be found in these links.
 **Ron Swanson**: https://github.com/jamesseanwright/ron-swanson-quotes#ron-swanson-quotes-api
 
 Note: this is just static data that is imported into the application.
+
 **Inspiration**: https://gist.github.com/nasrulhazim/54b659e43b1035215cd0ba1d4577ee80
