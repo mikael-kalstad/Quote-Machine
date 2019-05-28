@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{49:function(n,o,t){"use strict";t.r(o),o.default=function(){return fetch("http://ron-swanson-quotes.herokuapp.com/v2/quotes").then(function(n){return n.json()}).then(function(n){return[n[0],"Ron Swanson"]})}}}]);
+//# sourceMappingURL=6.0f71452f.chunk.js.map

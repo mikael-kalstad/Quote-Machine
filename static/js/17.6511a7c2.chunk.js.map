@@ -1,0 +1,1 @@
+{"version":3,"sources":["fonts/Reditum.ttf"],"names":["module","exports","__webpack_require__","p"],"mappings":"6EAAAA,EAAAC,QAAiBC,EAAAC,EAAuB","file":"static/js/17.6511a7c2.chunk.js","sourcesContent":["module.exports = __webpack_public_path__ + \"static/media/Reditum.124205af.ttf\";"],"sourceRoot":""}
