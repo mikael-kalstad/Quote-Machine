@@ -1,6 +1,6 @@
-!["Easter egg"](/Gifs/tounge.gif)
-
 *This project was developed to learn react after taking a course on react.js. All pictures, API's and data used in this project is for testing purposes only.*
+
+!["Easter egg"](/Gifs/tounge.gif)
 
 **Link to the website: https://mikael-kalstad.github.io/Quote-Machine/**
 
